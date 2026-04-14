@@ -106,9 +106,12 @@
   }
 
   function renderHomePage() {
+    const data = window.NBTI_DATA || {};
+    const types = Array.isArray(data.types) ? data.types : [];
+
     const marqueeRoot = document.getElementById("home-type-marquee");
-    if (marqueeRoot) {
-      const cards = window.NBTI_DATA.types
+    if (marqueeRoot && types.length) {
+      const cards = types
         .map((t) => {
           const title = `${t.cardName || t.name} ${t.code}`;
           const quote = t.cardHeadline || t.oneLiner || "";
@@ -181,7 +184,7 @@
     }
 
     const danmuRoot = document.getElementById("home-danmu-wall");
-    if (danmuRoot) {
+    if (danmuRoot && !danmuRoot.querySelector(".danmu-row")) {
       const comments = [
         "这不就是我？？？",
         "我被看透了",
@@ -1076,7 +1079,11 @@
   function boot() {
     setupTrackingDelegation();
     hydrateYear();
-    renderHomePage();
+    try {
+      renderHomePage();
+    } catch (e) {
+      // Keep homepage usable even if dynamic blocks fail.
+    }
     setupTestPage();
     renderResultPage();
     renderTypeDetail();
