@@ -3,11 +3,15 @@
   const ANSWER_MAP = { A: 4, B: 3, C: 2, D: 1 };
 
   function byCode(code) {
-    return window.NBTI_DATA.types.find((t) => t.code === code);
+    const data = window.NBTI_DATA || {};
+    const list = Array.isArray(data.types) ? data.types : [];
+    return list.find((t) => t.code === code);
   }
 
   function bySlug(slug) {
-    return window.NBTI_DATA.types.find((t) => t.slug === slug);
+    const data = window.NBTI_DATA || {};
+    const list = Array.isArray(data.types) ? data.types : [];
+    return list.find((t) => t.slug === slug);
   }
 
   function isEnSite() {
@@ -593,7 +597,12 @@
     const holder = document.getElementById("test-app");
     if (!holder) return;
 
-    const questions = window.NBTI_DATA.questions;
+    const data = window.NBTI_DATA || {};
+    const questions = Array.isArray(data.questions) ? data.questions : [];
+    if (!questions.length) {
+      holder.innerHTML = `<article class="card">${t("测试数据未加载，请刷新页面。", "Test data not loaded. Please refresh.")}</article>`;
+      return;
+    }
     const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
     let index = 0;
     let isNavigating = false;
@@ -1087,7 +1096,7 @@
 
     function feedCard(type) {
       const em = CARD_EMOJI_MAP[type.code] || ["✨", "🧩", "⚡"];
-      const ts = Array.isArray(type.cardTraits) ? type.cardTraits.slice(0, 3) : type.traits.slice(0, 3);
+      const ts = displayTraits(type);
       const quote = type.cardHeadline || type.oneLiner;
       return `
       <a class="feed-card" href="${route(`/types/${type.slug}/`)}" aria-label="${t(`查看 ${type.name} ${type.code}`, `View ${type.name} ${type.code}`)}" data-track="type_card_click" data-track-meta="${type.code}">
@@ -1131,7 +1140,8 @@
     const root = document.getElementById("rankings-app");
     if (!root) return;
 
-    const rd = window.NBTI_DATA.rankingsData;
+    const data = window.NBTI_DATA || {};
+    const rd = data.rankingsData;
     if (!rd || !rd.rankings || !rd.rankings.all_time) {
       root.innerHTML = `<article class='card'>${t("排行榜数据暂未准备好。", "Ranking data is not ready yet.")}</article>`;
       return;
