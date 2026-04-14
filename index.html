@@ -12,12 +12,12 @@
   <body>
     <main class="site-wrap">
       <header class="topbar">
-        <a class="logo" href="/">NBTI <small>Not MBTI</small></a>
+        <a class="logo" href="/">NBTI <small>不是MBTI</small></a>
         <nav class="nav">
-          <a href="/test/">测试</a>
-          <a href="/types/">类型</a>
+          <a href="/test/">开始测试</a>
+          <a href="/types/">所有类型</a>
           <a href="/rankings/">排行榜</a>
-          <a href="/insights/why-do-i-overthink-everything/">洞察</a>
+          <a href="/insights/">自我洞察</a>
           <a href="/faq/">FAQ</a>
           <a href="/about/">关于</a>
         </nav>
@@ -25,74 +25,48 @@
 
       <section class="hero">
         <h1>这套人格系统把我看透了</h1>
-        <p class="lead">不是MBTI 这是更接近你真实状态的版本</p>
+        <p class="lead">不是MBTI，这是更接近你真实状态的版本。</p>
         <div class="cta-row">
           <a class="btn" href="/test/" data-track="home_cta_click" data-track-meta="hero_primary">👉 进入测试（2分钟）</a>
-          <a class="btn ghost" href="/insights/why-do-i-overthink-everything/" data-track="home_insights_click" data-track-meta="hero_insights">先看热门问题</a>
         </div>
         <p class="muted">共56题 · 约2分钟</p>
       </section>
 
       <section class="section">
         <h2>你可能会在这里看到自己</h2>
-        <article class="card hook-rotator-card">
-          <p id="homeHookText" class="lead">你不是懒 你是一直在准备开始</p>
-          <p class="muted">左右滑动 / 自动轮播</p>
-        </article>
+        <div id="home-type-marquee" class="type-marquee"></div>
       </section>
 
       <section class="section">
         <h2>热门自我问题</h2>
-        <div class="grid">
-          <a class="card" href="/insights/why-do-i-overthink-everything/" data-track="home_insights_click" data-track-meta="overthink">
-            <p><strong>Why do I overthink everything?</strong></p>
-            <p class="muted">为什么我总在脑内循环</p>
-          </a>
-          <a class="card" href="/insights/why-do-i-start-things-but-dont-finish/" data-track="home_insights_click" data-track-meta="start_finish">
-            <p><strong>Why do I start things but never finish?</strong></p>
-            <p class="muted">为什么我总是开头猛，后面断</p>
-          </a>
-          <a class="card" href="/insights/why-do-i-feel-like-different-versions-of-myself/" data-track="home_insights_click" data-track-meta="multi_version">
-            <p><strong>Why do I feel like different versions of myself?</strong></p>
-            <p class="muted">为什么我像有多个版本</p>
-          </a>
+        <div id="home-insight-random" class="grid"></div>
+        <div class="cta-row">
+          <a class="btn ghost" href="/insights/" data-track="home_insights_click" data-track-meta="more_entry">查看更多自我洞察 →</a>
         </div>
       </section>
 
       <section class="section">
-        <h2>题目示例</h2>
-        <article class="card">
-          <p>我很多时候不是不想做，是越想越多，最后反而不开始。</p>
-          <p class="muted">A. 完全是我 · B. 有点像 · C. 不太像 · D. 完全不是</p>
-          <p class="muted">不用思考，选感觉就行</p>
-        </article>
-      </section>
-
-      <section class="section">
         <h2>结果预期</h2>
-        <article class="card">
-          <p>完成后你会得到：</p>
-          <p>✓ 你的核心人格类型</p>
-          <p>✓ 一句话“被看透”总结</p>
-          <p>✓ 你为什么会这样</p>
-          <p>✓ 你卡在哪里</p>
-          <p>✓ 你更适合怎么做</p>
-          <p class="muted">做完可生成专属人格卡</p>
-        </article>
+        <div class="expect-grid">
+          <article class="card expect-main">
+            <p class="muted">完成后你会得到</p>
+            <p class="lead">你会被解释清楚</p>
+          </article>
+          <article class="card">✓ 你的核心人格类型</article>
+          <article class="card">✓ 一句话“被看透”总结</article>
+          <article class="card">✓ 你为什么会这样</article>
+          <article class="card">✓ 你卡在哪里</article>
+          <article class="card">✓ 你更适合怎么做</article>
+        </div>
       </section>
 
       <section class="section">
-        <h2>社会证明</h2>
+        <h2>他们都说</h2>
         <p class="muted">已经有 132,842 人测过</p>
-        <article class="card">
-          <p class="danmu-line">“这不就是我？？？”</p>
-          <p class="danmu-line">“我被看透了”</p>
-          <p class="danmu-line">“救命”</p>
-        </article>
+        <div id="home-danmu-wall" class="danmu-wall"></div>
       </section>
 
       <section class="section">
-        <h2>别想太久</h2>
         <div class="cta-row">
           <a class="btn" href="/test/" data-track="home_cta_click" data-track-meta="bottom_primary">👉 进入测试</a>
         </div>
@@ -100,23 +74,13 @@
 
       <footer class="footer">
         <p>NBTI V2.0 · 纯静态版 · <span data-year></span></p>
+        <p><a href="/privacy/">隐私</a> · <a href="/faq/">FAQ</a> · <a href="/test/">开始测试</a></p>
       </footer>
     </main>
-    <script>
-      (function () {
-        const lines = [
-          "你不是懒 你是一直在准备开始",
-          "你不是想太多 你是停不下来",
-          "你不是社恐 你是懒得社交"
-        ];
-        const el = document.getElementById("homeHookText");
-        if (!el) return;
-        let i = 0;
-        setInterval(function () {
-          i = (i + 1) % lines.length;
-          el.textContent = lines[i];
-        }, 2600);
-      })();
-    </script>
   </body>
 </html>
+
+
+
+
+

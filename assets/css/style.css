@@ -265,6 +265,111 @@ p {
   padding-left: 10px;
 }
 
+.type-marquee {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-rtl 45s linear infinite;
+}
+
+.marquee-card {
+  width: 220px;
+  flex: 0 0 220px;
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  border-right: 1px solid var(--line);
+  padding: 12px;
+}
+
+.marquee-card img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  background: #f3f3ef;
+  margin-bottom: 8px;
+}
+
+.marquee-title {
+  font-size: 14px;
+  margin: 0 0 4px;
+}
+
+.marquee-quote {
+  font-size: 12px;
+  color: #333;
+  margin: 0;
+  line-height: 1.4;
+}
+
+@keyframes marquee-rtl {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.expect-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.expect-main {
+  grid-column: span 3;
+  background: #111111;
+  color: #ffffff;
+}
+
+.expect-main .muted {
+  color: #d7d7d7;
+}
+
+.danmu-wall {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  padding: 8px 0;
+}
+
+.danmu-row {
+  display: flex;
+  width: max-content;
+  gap: 8px;
+  padding: 6px 8px;
+  animation: danmu-left 26s linear infinite;
+}
+
+.danmu-row.reverse {
+  animation-name: danmu-right;
+}
+
+.danmu-bubble {
+  white-space: nowrap;
+  border: 1px solid var(--line);
+  background: #f7f6f2;
+  padding: 6px 10px;
+  font-size: 13px;
+}
+
+@keyframes danmu-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes danmu-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
 .filter-row {
   display: flex;
   flex-wrap: wrap;
@@ -468,6 +573,14 @@ p {
 
   .feed-grid {
     grid-template-columns: 1fr;
+  }
+
+  .expect-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .expect-main {
+    grid-column: span 1;
   }
 
   .stats-grid {

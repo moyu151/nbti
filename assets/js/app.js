@@ -74,35 +74,6 @@
     localStorage.setItem("nbti_last_result_v2", JSON.stringify(payload));
   }
 
-  function applyUnifiedSiteChrome() {
-    const navHtml = `
-      <a href="/test/">测试</a>
-      <a href="/types/">类型</a>
-      <a href="/rankings/">热度榜</a>
-      <a href="/insights/why-do-i-overthink-everything/">洞察</a>
-      <a href="/faq/">FAQ</a>
-      <a href="/about/">关于</a>
-    `;
-
-    document.querySelectorAll(".topbar").forEach((bar) => {
-      const nav = bar.querySelector(".nav");
-      if (nav) nav.innerHTML = navHtml;
-    });
-
-    const main = document.querySelector(".site-wrap");
-    if (!main) return;
-    let footer = main.querySelector(".footer");
-    if (!footer) {
-      footer = document.createElement("footer");
-      footer.className = "footer";
-      main.appendChild(footer);
-    }
-    footer.innerHTML = `
-      <p>NBTI V2.0 · 纯静态版 · <span data-year></span></p>
-      <p><a href="/privacy/">隐私</a> · <a href="/faq/">FAQ</a> · <a href="/test/">进入测试</a></p>
-    `;
-  }
-
   function trackEvent(eventName, meta) {
     try {
       const payload = {
@@ -132,6 +103,113 @@
       const meta = node.getAttribute("data-track-meta") || "";
       trackEvent(name, { meta });
     });
+  }
+
+  function renderHomePage() {
+    const marqueeRoot = document.getElementById("home-type-marquee");
+    if (marqueeRoot) {
+      const cards = window.NBTI_DATA.types
+        .map((t) => {
+          const title = `${t.cardName || t.name} ${t.code}`;
+          const quote = t.cardHeadline || t.oneLiner || "";
+          return `
+            <a class="marquee-card" href="/types/${t.slug}/" data-track="home_type_marquee_click" data-track-meta="${t.code}">
+              <picture>
+                <source srcset="/assets/types/${t.slug}.webp" type="image/webp" />
+                <img src="/assets/types/${t.slug}.png" alt="${title}" loading="lazy" />
+              </picture>
+              <p class="marquee-title">${title}</p>
+              <p class="marquee-quote">「${escapeHtml(quote)}」</p>
+            </a>
+          `;
+        })
+        .join("");
+      marqueeRoot.innerHTML = `<div class="marquee-track">${cards}${cards}</div>`;
+    }
+
+    const insightRoot = document.getElementById("home-insight-random");
+    if (insightRoot) {
+      const pool = [
+        {
+          q: "为什么我总在想太多？",
+          d: "明明事情已经过去了，脑子却还在复盘细节，一层一层停不下来……",
+          href: "/insights/why-do-i-overthink-everything/",
+          meta: "overthink"
+        },
+        {
+          q: "为什么我总是开头猛，后面断？",
+          d: "刚开始的时候冲得很快，但一进入重复阶段就掉速，最后卡在半路……",
+          href: "/insights/why-do-i-start-things-but-dont-finish/",
+          meta: "start_finish"
+        },
+        {
+          q: "为什么我像有好几个版本？",
+          d: "在不同场景里像不同的人，这不是装，而是你在自动适配环境……",
+          href: "/insights/why-do-i-feel-like-different-versions-of-myself/",
+          meta: "multi_version"
+        },
+        {
+          q: "为什么我能聊，但不想主动聊？",
+          d: "不是不会社交，而是主动启动社交这件事对你来说成本很高……",
+          href: "/types/xsb/",
+          meta: "xsb"
+        },
+        {
+          q: "为什么我总觉得还有更好的做法？",
+          d: "手上在做 A，脑子已经在评估 B 和 C，注意力一直被新可能拉走……",
+          href: "/types/xos/",
+          meta: "xos"
+        },
+        {
+          q: "为什么我总在关系里拉扯边界？",
+          d: "想拒绝又怕关系变僵，最后先答应，事后再后悔……",
+          href: "/types/sbc/",
+          meta: "sbc"
+        }
+      ];
+      const pick = [...pool].sort(() => Math.random() - 0.5).slice(0, 3);
+      insightRoot.innerHTML = pick
+        .map(
+          (x) => `
+          <a class="card" href="${x.href}" data-track="home_insights_click" data-track-meta="${x.meta}">
+            <p><strong>${x.q}</strong></p>
+            <p class="muted">${x.d}</p>
+          </a>
+        `
+        )
+        .join("");
+    }
+
+    const danmuRoot = document.getElementById("home-danmu-wall");
+    if (danmuRoot) {
+      const comments = [
+        "这不就是我？？？",
+        "我被看透了",
+        "后悔点进来",
+        "别做，太真实了",
+        "每一题都在戳我",
+        "这个描述太准了",
+        "救命，连卡点都说中了",
+        "我朋友也是这个类型",
+        "原来我一直是这样运转",
+        "看完想立刻转发",
+        "怎么连我关系模式都知道",
+        "这比我自己还懂我",
+        "我不是懒，是真的会卡住",
+        "我就是那个开坑狂魔",
+        "我以为只有我这样",
+        "太离谱了但就是事实",
+        "看完直接去测了",
+        "居然连压力状态都一致",
+        "我朋友看完也破防了",
+        "这就是我的日常"
+      ];
+      const bubbles = comments.map((c) => `<span class="danmu-bubble">“${c}”</span>`).join("");
+      danmuRoot.innerHTML = `
+        <div class="danmu-row">${bubbles}${bubbles}</div>
+        <div class="danmu-row reverse">${bubbles}${bubbles}</div>
+      `;
+    }
   }
 
   function renderTypeCard(type) {
@@ -970,9 +1048,22 @@
   function renderFaqPage() {
     const root = document.getElementById("faq-app");
     if (!root) return;
-    root.innerHTML = window.NBTI_DATA.faq
-      .map((item) => `<article class="card"><h3>${item.q}</h3><p>${item.a}</p></article>`)
-      .join('<div style="height:10px"></div>');
+    const groups = [
+      { key: "测试问题", id: "faq-test" },
+      { key: "结果问题", id: "faq-result" },
+      { key: "排行榜问题", id: "faq-rank" }
+    ];
+    root.innerHTML = groups
+      .map((g) => {
+        const list = (window.NBTI_DATA.faq || []).filter((x) => (x.cat || "测试问题") === g.key);
+        return `
+          <section id="${g.id}" class="section">
+            <h2>${g.key}</h2>
+            ${list.map((item) => `<article class="card"><h3>${item.q}</h3><p>${item.a}</p></article>`).join('<div style="height:10px"></div>')}
+          </section>
+        `;
+      })
+      .join("");
   }
 
   function hydrateYear() {
@@ -983,9 +1074,9 @@
   }
 
   function boot() {
-    applyUnifiedSiteChrome();
     setupTrackingDelegation();
     hydrateYear();
+    renderHomePage();
     setupTestPage();
     renderResultPage();
     renderTypeDetail();

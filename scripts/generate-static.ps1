@@ -40,10 +40,10 @@ foreach ($t in $types) {
   <body>
     <main class="site-wrap">
       <header class="topbar">
-        <a class="logo" href="/">NBTI <small>Not MBTI</small></a>
+        <a class="logo" href="/">NBTI <small>不是MBTI</small></a>
         <nav class="nav">
-          <a href="/test/">测试</a>
-          <a href="/types/">类型</a>
+          <a href="/test/">开始测试</a>
+          <a href="/types/">所有类型</a>
           <a href="/rankings/">排行榜</a>
         </nav>
       </header>
@@ -69,10 +69,10 @@ foreach ($t in $types) {
   <body>
     <main class="site-wrap">
       <header class="topbar">
-        <a class="logo" href="/">NBTI <small>Not MBTI</small></a>
+        <a class="logo" href="/">NBTI <small>不是MBTI</small></a>
         <nav class="nav">
-          <a href="/test/">测试</a>
-          <a href="/types/">全部类型</a>
+          <a href="/test/">开始测试</a>
+          <a href="/types/">所有类型</a>
           <a href="/rankings/">排行榜</a>
         </nav>
       </header>
