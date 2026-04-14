@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NBTI 人格排行榜</title>
-    <meta name="description" content="NBTI 人格类型排名（当前为 mock 数据），含 TOP3 与行为洞察。" />
+    <meta name="description" content="NBTI 人格热度榜：查看当前用户样本分布、TOP3人格、趋势变化与维度洞察。" />
     <link rel="stylesheet" href="/assets/css/style.css" />
     <script src="/assets/js/data.js" defer></script>
     <script src="/assets/js/app.js" defer></script>
@@ -20,17 +20,11 @@
         </nav>
       </header>
       <section class="hero">
-        <h1>人格排行榜</h1>
-        <p class="muted">当前版本为 mock 数据，用于传播与页面体验验证。</p>
+        <h1>NBTI 人格热度榜</h1>
+        <p class="lead">看看现在大家都测成了什么样（也可能，你会看到自己）</p>
+        <p class="muted">这不是标准答案，只是当下这批人的真实分布</p>
       </section>
-      <section class="section">
-        <h2>TOP3</h2>
-        <div id="rankings-app" class="card"></div>
-      </section>
-      <section class="section">
-        <h2>洞察</h2>
-        <p>高传播类型通常具备：一句话破防、行为可识别、可社交自我表达。</p>
-      </section>
+      <div id="rankings-app"></div>
     </main>
   </body>
 </html>

@@ -22,13 +22,13 @@ window.NBTI_DATA = {
     }
   ],
   "dimensions": [
-    "S",
-    "E",
     "C",
-    "A",
+    "E",
     "X",
+    "S",
     "B",
-    "O"
+    "O",
+    "S2"
   ],
   "weights": {
     "S": 1,
@@ -69,10 +69,50 @@ window.NBTI_DATA = {
         "S": 0.62,
         "E": 0.54,
         "C": 0.38,
-        "A": 0.52,
         "X": 0.92,
         "B": 0.35,
-        "O": 0.88
+        "O": 0.88,
+        "S2": 0.52
+      },
+      "breakLine": "你不是没执行力，你是被新鲜感不断截胡。",
+      "realState": [
+        "同时想做几件事，脑内并行开很多线程。",
+        "A 还没做完，B 的新想法已经开始抢注意力。",
+        "明明有计划，但计划经常输给更新鲜的方向。"
+      ],
+      "commentPrompt": "你是这个类型吗？评论区报你的类型👇",
+      "cardName": "脑洞玩家",
+      "cardHeadline": "你不是三分钟热度，你是热度太多，三分钟一个",
+      "cardTraits": [
+        "想法很多",
+        "开坑很快",
+        "总被新东西吸引"
+      ],
+      "seo": {
+        "title_en": "Explorer Personality Type (XOS) - NBTI",
+        "meta_description_en": "Explorer (XOS) profile. why do I start things but don't finish. Take the NBTI personality test to understand how you actually function.",
+        "intro_en": "If start things but don't finish, you might match the Explorer type.",
+        "keywords": [
+          "personality test",
+          "what type of person am I",
+          "why do I start things but don't finish",
+          "explorer personality",
+          "xos personality"
+        ],
+        "faq": [
+          {
+            "q": "Why does explorer type feel this way?",
+            "a": "Because behavior patterns are often strategy-based, not identity-fixed. NBTI maps the strategy currently used most often."
+          },
+          {
+            "q": "Can this explorer result change over time?",
+            "a": "Yes. Context, stress, relationships, and goals can shift your behavior pattern and therefore your type output."
+          },
+          {
+            "q": "What should explorer type improve first?",
+            "a": "Start with one friction point: execution rhythm, emotional boundary, or communication consistency."
+          }
+        ]
       }
     },
     {
@@ -98,17 +138,57 @@ window.NBTI_DATA = {
         "S": 0.48,
         "E": 0.46,
         "C": 0.83,
-        "A": 0.56,
         "X": 0.8,
         "B": 0.6,
-        "O": 0.74
+        "O": 0.74,
+        "S2": 0.56
       },
       "danmu": [
         "先别激动，先排个优先级。",
         "这个可以做，但要先定范围。",
         "别担心，我会把它收好尾。",
         "创意可以飞，交付要落地。"
-      ]
+      ],
+      "breakLine": "你不是慢，你是先把事情做成再说。",
+      "realState": [
+        "会先拆目标，再按节奏推进。",
+        "临时变化出现时先重排，而不是推翻重来。",
+        "别人靠冲劲，你靠稳定交付。"
+      ],
+      "commentPrompt": "你更像 XOC 还是别的类型？评论区聊聊👇",
+      "cardName": "稳定输出机",
+      "cardHeadline": "你不是靠灵感，你是可以一直做的人",
+      "cardTraits": [
+        "节奏稳定",
+        "持续产出",
+        "越做越顺"
+      ],
+      "seo": {
+        "title_en": "Consistent Builder Personality Type (XOC) - NBTI",
+        "meta_description_en": "Consistent Builder (XOC) profile. how to stay consistent with goals. Take the NBTI personality test to understand how you actually function.",
+        "intro_en": "If stay consistent with goals, you might match the Consistent Builder type.",
+        "keywords": [
+          "personality test",
+          "what type of person am I",
+          "how to stay consistent with goals",
+          "consistent builder personality",
+          "xoc personality"
+        ],
+        "faq": [
+          {
+            "q": "Why does consistent builder type feel this way?",
+            "a": "Because behavior patterns are often strategy-based, not identity-fixed. NBTI maps the strategy currently used most often."
+          },
+          {
+            "q": "Can this consistent builder result change over time?",
+            "a": "Yes. Context, stress, relationships, and goals can shift your behavior pattern and therefore your type output."
+          },
+          {
+            "q": "What should consistent builder type improve first?",
+            "a": "Start with one friction point: execution rhythm, emotional boundary, or communication consistency."
+          }
+        ]
+      }
     },
     {
       "code": "XSB",
@@ -133,17 +213,57 @@ window.NBTI_DATA = {
         "S": 0.34,
         "E": 0.58,
         "C": 0.62,
-        "A": 0.5,
         "X": 0.78,
         "B": 0.82,
-        "O": 0.36
+        "O": 0.36,
+        "S2": 0.5
       },
       "danmu": [
         "先别下结论，我再看一轮。",
         "这件事表面不是重点。",
         "我不是没想法，我在等证据。",
         "慢一点，判断会更准。"
-      ]
+      ],
+      "breakLine": "你不是不合群，你是先看清再参与。",
+      "realState": [
+        "先观察局势和细节，再决定是否出手。",
+        "经常能提前看见别人没注意到的风险。",
+        "想法很多，但表达常常晚于判断。"
+      ],
+      "commentPrompt": "你也是“先观察后行动”型吗？👇",
+      "cardName": "人类观察者",
+      "cardHeadline": "你不是不说话，你是在看人类",
+      "cardTraits": [
+        "观察细节",
+        "看懂关系",
+        "很少急着表达"
+      ],
+      "seo": {
+        "title_en": "Human Observer Personality Type (XSB) - NBTI",
+        "meta_description_en": "Human Observer (XSB) profile. why do I overanalyze people. Take the NBTI personality test to understand how you actually function.",
+        "intro_en": "If overanalyze people, you might match the Human Observer type.",
+        "keywords": [
+          "personality test",
+          "what type of person am I",
+          "why do I overanalyze people",
+          "human observer personality",
+          "xsb personality"
+        ],
+        "faq": [
+          {
+            "q": "Why does human observer type feel this way?",
+            "a": "Because behavior patterns are often strategy-based, not identity-fixed. NBTI maps the strategy currently used most often."
+          },
+          {
+            "q": "Can this human observer result change over time?",
+            "a": "Yes. Context, stress, relationships, and goals can shift your behavior pattern and therefore your type output."
+          },
+          {
+            "q": "What should human observer type improve first?",
+            "a": "Start with one friction point: execution rhythm, emotional boundary, or communication consistency."
+          }
+        ]
+      }
     },
     {
       "code": "SOC",
@@ -168,17 +288,57 @@ window.NBTI_DATA = {
         "S": 0.94,
         "E": 0.52,
         "C": 0.62,
-        "A": 0.73,
         "X": 0.66,
         "B": 0.38,
-        "O": 0.91
+        "O": 0.91,
+        "S2": 0.73
       },
       "danmu": [
         "来都来了，先把气氛热起来。",
         "这个局我来破冰。",
         "大家都别端着，先聊起来。",
         "先把人连上，事就好办了。"
-      ]
+      ],
+      "breakLine": "你不是爱表现，你是天然会点亮场子。",
+      "realState": [
+        "冷场时会本能地接话和破冰。",
+        "互动越顺，能量越高。",
+        "社交多的时候很亮，结束后容易透支。"
+      ],
+      "commentPrompt": "社牛本牛集合，评论区报到👇",
+      "cardName": "社牛本牛",
+      "cardHeadline": "你不是爱聊天，你是让场子活着的人",
+      "cardTraits": [
+        "主动开局",
+        "带动气氛",
+        "不怕冷场"
+      ],
+      "seo": {
+        "title_en": "Social Catalyst Personality Type (SOC) - NBTI",
+        "meta_description_en": "Social Catalyst (SOC) profile. am I an extrovert or just adaptive. Take the NBTI personality test to understand how you actually function.",
+        "intro_en": "If an extrovert or just adaptive, you might match the Social Catalyst type.",
+        "keywords": [
+          "personality test",
+          "what type of person am I",
+          "am I an extrovert or just adaptive",
+          "social catalyst personality",
+          "soc personality"
+        ],
+        "faq": [
+          {
+            "q": "Why does social catalyst type feel this way?",
+            "a": "Because behavior patterns are often strategy-based, not identity-fixed. NBTI maps the strategy currently used most often."
+          },
+          {
+            "q": "Can this social catalyst result change over time?",
+            "a": "Yes. Context, stress, relationships, and goals can shift your behavior pattern and therefore your type output."
+          },
+          {
+            "q": "What should social catalyst type improve first?",
+            "a": "Start with one friction point: execution rhythm, emotional boundary, or communication consistency."
+          }
+        ]
+      }
     },
     {
       "code": "SEA",
@@ -203,17 +363,57 @@ window.NBTI_DATA = {
         "S": 0.6,
         "E": 0.93,
         "C": 0.48,
-        "A": 0.86,
         "X": 0.5,
         "B": 0.42,
-        "O": 0.58
+        "O": 0.58,
+        "S2": 0.86
       },
       "danmu": [
         "你刚刚那句语气有点不一样。",
         "我知道你嘴上说没事，其实有事。",
         "先别吵，我大概知道问题在哪。",
         "我不是多想，我是感受到了。"
-      ]
+      ],
+      "breakLine": "你不是想太多，你是情绪雷达过于灵敏。",
+      "realState": [
+        "别人语气一变就能捕捉到信号。",
+        "经常先感受关系温度，再决定怎么说。",
+        "容易在不知不觉中承担他人的情绪负荷。"
+      ],
+      "commentPrompt": "你会不会也经常“先感受到再反应”？👇",
+      "cardName": "情绪雷达",
+      "cardHeadline": "你不是敏感，你是提前感觉到了",
+      "cardTraits": [
+        "捕捉变化",
+        "读懂情绪",
+        "细节很重"
+      ],
+      "seo": {
+        "title_en": "Emotional Radar Personality Type (SEA) - NBTI",
+        "meta_description_en": "Emotional Radar (SEA) profile. why am I so sensitive to others. Take the NBTI personality test to understand how you actually function.",
+        "intro_en": "If so sensitive to others, you might match the Emotional Radar type.",
+        "keywords": [
+          "personality test",
+          "what type of person am I",
+          "why am I so sensitive to others",
+          "emotional radar personality",
+          "sea personality"
+        ],
+        "faq": [
+          {
+            "q": "Why does emotional radar type feel this way?",
+            "a": "Because behavior patterns are often strategy-based, not identity-fixed. NBTI maps the strategy currently used most often."
+          },
+          {
+            "q": "Can this emotional radar result change over time?",
+            "a": "Yes. Context, stress, relationships, and goals can shift your behavior pattern and therefore your type output."
+          },
+          {
+            "q": "What should emotional radar type improve first?",
+            "a": "Start with one friction point: execution rhythm, emotional boundary, or communication consistency."
+          }
+        ]
+      }
     },
     {
       "code": "SBC",
@@ -238,17 +438,57 @@ window.NBTI_DATA = {
         "S": 0.52,
         "E": 0.56,
         "C": 0.75,
-        "A": 0.43,
         "X": 0.48,
         "B": 0.9,
-        "O": 0.44
+        "O": 0.44,
+        "S2": 0.43
       },
       "danmu": [
         "先观察一下，再决定要不要深聊。",
         "礼貌归礼貌，边界归边界。",
         "不是拒绝你，是我需要时间。",
         "我筛选，不是因为傲慢。"
-      ]
+      ],
+      "breakLine": "你不是难接近，你是把信任门槛设得很清楚。",
+      "realState": [
+        "能互动，但不会快速交底。",
+        "关系投入前会先评估稳定性。",
+        "边界清楚时才会持续靠近。"
+      ],
+      "commentPrompt": "你是慢热高门槛型吗？评论区说说👇",
+      "cardName": "高门槛玩家",
+      "cardHeadline": "你不是冷，是你不想乱投入",
+      "cardTraits": [
+        "有筛选",
+        "不轻易进入",
+        "先判断再靠近"
+      ],
+      "seo": {
+        "title_en": "High-Threshold Connector Personality Type (SBC) - NBTI",
+        "meta_description_en": "High-Threshold Connector (SBC) profile. why is it hard for me to trust people. Take the NBTI personality test to understand how you actually function.",
+        "intro_en": "If hard for me to trust people, you might match the High-Threshold Connector type.",
+        "keywords": [
+          "personality test",
+          "what type of person am I",
+          "why is it hard for me to trust people",
+          "high-threshold connector personality",
+          "sbc personality"
+        ],
+        "faq": [
+          {
+            "q": "Why does high-threshold connector type feel this way?",
+            "a": "Because behavior patterns are often strategy-based, not identity-fixed. NBTI maps the strategy currently used most often."
+          },
+          {
+            "q": "Can this high-threshold connector result change over time?",
+            "a": "Yes. Context, stress, relationships, and goals can shift your behavior pattern and therefore your type output."
+          },
+          {
+            "q": "What should high-threshold connector type improve first?",
+            "a": "Start with one friction point: execution rhythm, emotional boundary, or communication consistency."
+          }
+        ]
+      }
     },
     {
       "code": "CEC",
@@ -273,17 +513,57 @@ window.NBTI_DATA = {
         "S": 0.56,
         "E": 0.48,
         "C": 0.92,
-        "A": 0.88,
         "X": 0.45,
         "B": 0.62,
-        "O": 0.52
+        "O": 0.52,
+        "S2": 0.88
       },
       "danmu": [
         "行，我来把这事落地。",
         "别急，我先把路径拆出来。",
         "答应了就会做到。",
         "问题不怕，先建闭环。"
-      ]
+      ],
+      "breakLine": "你不是控制欲强，你是对结果太负责。",
+      "realState": [
+        "接到任务会自动进入推进模式。",
+        "答应的事会默认自己兜到底。",
+        "常常外表稳定，内在负荷很高。"
+      ],
+      "commentPrompt": "靠谱本体在吗？报个类型👇",
+      "cardName": "靠谱本体",
+      "cardHeadline": "你不是普通，你是最后兜底的人",
+      "cardTraits": [
+        "稳定执行",
+        "能收住事",
+        "不容易出错"
+      ],
+      "seo": {
+        "title_en": "Reliable Core Personality Type (CEC) - NBTI",
+        "meta_description_en": "Reliable Core (CEC) profile. why do I always take responsibility. Take the NBTI personality test to understand how you actually function.",
+        "intro_en": "If always take responsibility, you might match the Reliable Core type.",
+        "keywords": [
+          "personality test",
+          "what type of person am I",
+          "why do I always take responsibility",
+          "reliable core personality",
+          "cec personality"
+        ],
+        "faq": [
+          {
+            "q": "Why does reliable core type feel this way?",
+            "a": "Because behavior patterns are often strategy-based, not identity-fixed. NBTI maps the strategy currently used most often."
+          },
+          {
+            "q": "Can this reliable core result change over time?",
+            "a": "Yes. Context, stress, relationships, and goals can shift your behavior pattern and therefore your type output."
+          },
+          {
+            "q": "What should reliable core type improve first?",
+            "a": "Start with one friction point: execution rhythm, emotional boundary, or communication consistency."
+          }
+        ]
+      }
     },
     {
       "code": "CBC",
@@ -308,17 +588,57 @@ window.NBTI_DATA = {
         "S": 0.36,
         "E": 0.44,
         "C": 0.94,
-        "A": 0.58,
         "X": 0.34,
         "B": 0.93,
-        "O": 0.35
+        "O": 0.35,
+        "S2": 0.58
       },
       "danmu": [
         "先定规则，再谈执行。",
         "这件事要有标准，不然会反复返工。",
         "边界清楚，合作才轻松。",
         "稳不是慢，是少走弯路。"
-      ]
+      ],
+      "breakLine": "你不是古板，你是在替系统省混乱成本。",
+      "realState": [
+        "先定规则，再开始执行。",
+        "对边界和标准异常敏感。",
+        "变化过快时会先收紧控制。"
+      ],
+      "commentPrompt": "你也是秩序控吗？评论区见👇",
+      "cardName": "秩序控",
+      "cardHeadline": "你不是死板，你是世界必须有结构",
+      "cardTraits": [
+        "讲逻辑",
+        "要规则",
+        "讨厌混乱"
+      ],
+      "seo": {
+        "title_en": "Order Keeper Personality Type (CBC) - NBTI",
+        "meta_description_en": "Order Keeper (CBC) profile. why do I need structure to feel safe. Take the NBTI personality test to understand how you actually function.",
+        "intro_en": "If need structure to feel safe, you might match the Order Keeper type.",
+        "keywords": [
+          "personality test",
+          "what type of person am I",
+          "why do I need structure to feel safe",
+          "order keeper personality",
+          "cbc personality"
+        ],
+        "faq": [
+          {
+            "q": "Why does order keeper type feel this way?",
+            "a": "Because behavior patterns are often strategy-based, not identity-fixed. NBTI maps the strategy currently used most often."
+          },
+          {
+            "q": "Can this order keeper result change over time?",
+            "a": "Yes. Context, stress, relationships, and goals can shift your behavior pattern and therefore your type output."
+          },
+          {
+            "q": "What should order keeper type improve first?",
+            "a": "Start with one friction point: execution rhythm, emotional boundary, or communication consistency."
+          }
+        ]
+      }
     },
     {
       "code": "BSO",
@@ -343,17 +663,57 @@ window.NBTI_DATA = {
         "S": 0.63,
         "E": 0.4,
         "C": 0.76,
-        "A": 0.46,
         "X": 0.58,
         "B": 0.88,
-        "O": 0.66
+        "O": 0.66,
+        "S2": 0.46
       },
       "danmu": [
         "先看牌面，再决定怎么打。",
         "这步可以走，但时机要卡准。",
         "别急着表态，先看变量。",
         "最优解不是最热血解。"
-      ]
+      ],
+      "breakLine": "你不是算计，你是习惯先看博弈结构。",
+      "realState": [
+        "做决定前会先看变量和筹码。",
+        "不轻易表态，但出手通常有效。",
+        "关键时刻更重时机而不是情绪。"
+      ],
+      "commentPrompt": "你做决定也会先看牌面吗？👇",
+      "cardName": "控盘选手",
+      "cardHeadline": "你不是心机，你是看得太清楚",
+      "cardTraits": [
+        "看局",
+        "拆动机",
+        "不信表面"
+      ],
+      "seo": {
+        "title_en": "Control Strategist Personality Type (BSO) - NBTI",
+        "meta_description_en": "Control Strategist (BSO) profile. why do I always calculate outcomes. Take the NBTI personality test to understand how you actually function.",
+        "intro_en": "If always calculate outcomes, you might match the Control Strategist type.",
+        "keywords": [
+          "personality test",
+          "what type of person am I",
+          "why do I always calculate outcomes",
+          "control strategist personality",
+          "bso personality"
+        ],
+        "faq": [
+          {
+            "q": "Why does control strategist type feel this way?",
+            "a": "Because behavior patterns are often strategy-based, not identity-fixed. NBTI maps the strategy currently used most often."
+          },
+          {
+            "q": "Can this control strategist result change over time?",
+            "a": "Yes. Context, stress, relationships, and goals can shift your behavior pattern and therefore your type output."
+          },
+          {
+            "q": "What should control strategist type improve first?",
+            "a": "Start with one friction point: execution rhythm, emotional boundary, or communication consistency."
+          }
+        ]
+      }
     },
     {
       "code": "EAS",
@@ -378,17 +738,57 @@ window.NBTI_DATA = {
         "S": 0.55,
         "E": 0.9,
         "C": 0.32,
-        "A": 0.78,
         "X": 0.59,
         "B": 0.33,
-        "O": 0.72
+        "O": 0.72,
+        "S2": 0.78
       },
       "danmu": [
         "我今天状态很满，能一口气做很多。",
         "先让我缓一下，我在消化。",
         "这件事我有感觉，我想做。",
         "我不是忽冷忽热，我是有波形。"
-      ]
+      ],
+      "breakLine": "你不是不稳定，你是情绪和环境同步太快。",
+      "realState": [
+        "状态随场域变化明显。",
+        "有感觉时输出很猛，没感觉时很难推。",
+        "容易出现“爆发-回撤”的节奏。"
+      ],
+      "commentPrompt": "你也会有这种波形状态吗？👇",
+      "cardName": "情绪流动体",
+      "cardHeadline": "你不是情绪多，你是情绪会流动",
+      "cardTraits": [
+        "感受强",
+        "波动明显",
+        "很容易表达"
+      ],
+      "seo": {
+        "title_en": "Emotional Drifter Personality Type (EAS) - NBTI",
+        "meta_description_en": "Emotional Drifter (EAS) profile. why does my mood change so fast. Take the NBTI personality test to understand how you actually function.",
+        "intro_en": "If my mood change so fast, you might match the Emotional Drifter type.",
+        "keywords": [
+          "personality test",
+          "what type of person am I",
+          "why does my mood change so fast",
+          "emotional drifter personality",
+          "eas personality"
+        ],
+        "faq": [
+          {
+            "q": "Why does emotional drifter type feel this way?",
+            "a": "Because behavior patterns are often strategy-based, not identity-fixed. NBTI maps the strategy currently used most often."
+          },
+          {
+            "q": "Can this emotional drifter result change over time?",
+            "a": "Yes. Context, stress, relationships, and goals can shift your behavior pattern and therefore your type output."
+          },
+          {
+            "q": "What should emotional drifter type improve first?",
+            "a": "Start with one friction point: execution rhythm, emotional boundary, or communication consistency."
+          }
+        ]
+      }
     },
     {
       "code": "EXS",
@@ -413,17 +813,57 @@ window.NBTI_DATA = {
         "S": 0.3,
         "E": 0.92,
         "C": 0.42,
-        "A": 0.52,
         "X": 0.82,
         "B": 0.66,
-        "O": 0.31
+        "O": 0.31,
+        "S2": 0.52
       },
       "danmu": [
         "我再想一下，可能还有别的风险。",
         "这句话我得消化一下。",
         "不是不做，是还没想透。",
         "脑子停不下来。"
-      ]
+      ],
+      "breakLine": "你不是矫情，你是脑内循环没有停止键。",
+      "realState": [
+        "小事也会反复复盘和推演。",
+        "常在“想透再做”和“先做再调”间拉扯。",
+        "知道自己在内耗，但很难立刻停下。"
+      ],
+      "commentPrompt": "内耗大师在吗？评论区抱团👇",
+      "cardName": "内耗大师",
+      "cardHeadline": "你不是想太多，你是停不下来",
+      "cardTraits": [
+        "反复思考",
+        "自我循环",
+        "越想越深"
+      ],
+      "seo": {
+        "title_en": "Overthinker Personality Type (EXS) - NBTI",
+        "meta_description_en": "Overthinker (EXS) profile. why do I overthink everything. Take the NBTI personality test to understand how you actually function.",
+        "intro_en": "If overthink everything, you might match the Overthinker type.",
+        "keywords": [
+          "personality test",
+          "what type of person am I",
+          "why do I overthink everything",
+          "overthinker personality",
+          "exs personality"
+        ],
+        "faq": [
+          {
+            "q": "Why does overthinker type feel this way?",
+            "a": "Because behavior patterns are often strategy-based, not identity-fixed. NBTI maps the strategy currently used most often."
+          },
+          {
+            "q": "Can this overthinker result change over time?",
+            "a": "Yes. Context, stress, relationships, and goals can shift your behavior pattern and therefore your type output."
+          },
+          {
+            "q": "What should overthinker type improve first?",
+            "a": "Start with one friction point: execution rhythm, emotional boundary, or communication consistency."
+          }
+        ]
+      }
     },
     {
       "code": "BXE",
@@ -448,17 +888,57 @@ window.NBTI_DATA = {
         "S": 0.28,
         "E": 0.48,
         "C": 0.74,
-        "A": 0.36,
         "X": 0.75,
         "B": 0.95,
-        "O": 0.24
+        "O": 0.24,
+        "S2": 0.36
       },
       "danmu": [
         "先别靠太近，我需要一点空间。",
         "我可以处理，不用马上帮我。",
         "边界清楚，我才放松。",
         "慢一点，我在确认安全。"
-      ]
+      ],
+      "breakLine": "你不是冷淡，你是先保护自己再开放。",
+      "realState": [
+        "会本能先确认边界和安全。",
+        "遇到压力时优先收缩表达。",
+        "多数问题倾向先自己扛。"
+      ],
+      "commentPrompt": "你也属于高防御体质吗？👇",
+      "cardName": "高防御体质",
+      "cardHeadline": "你不是冷淡，你是习惯先保护自己",
+      "cardTraits": [
+        "防御优先",
+        "不轻易暴露",
+        "很难完全放开"
+      ],
+      "seo": {
+        "title_en": "Defensive Type Personality Type (BXE) - NBTI",
+        "meta_description_en": "Defensive Type (BXE) profile. why do I protect myself first. Take the NBTI personality test to understand how you actually function.",
+        "intro_en": "If protect myself first, you might match the Defensive Type type.",
+        "keywords": [
+          "personality test",
+          "what type of person am I",
+          "why do I protect myself first",
+          "defensive type personality",
+          "bxe personality"
+        ],
+        "faq": [
+          {
+            "q": "Why does defensive type type feel this way?",
+            "a": "Because behavior patterns are often strategy-based, not identity-fixed. NBTI maps the strategy currently used most often."
+          },
+          {
+            "q": "Can this defensive type result change over time?",
+            "a": "Yes. Context, stress, relationships, and goals can shift your behavior pattern and therefore your type output."
+          },
+          {
+            "q": "What should defensive type type improve first?",
+            "a": "Start with one friction point: execution rhythm, emotional boundary, or communication consistency."
+          }
+        ]
+      }
     },
     {
       "code": "BXC",
@@ -483,17 +963,57 @@ window.NBTI_DATA = {
         "S": 0.2,
         "E": 0.4,
         "C": 0.86,
-        "A": 0.34,
         "X": 0.66,
         "B": 0.9,
-        "O": 0.22
+        "O": 0.22,
+        "S2": 0.34
       },
       "danmu": [
         "我先一个人把框架做出来。",
         "别催，我在深度区。",
         "不是不回，是在专注。",
         "给我空间，我给你结果。"
-      ]
+      ],
+      "breakLine": "你不是社恐，你是单机模式效率更高。",
+      "realState": [
+        "独处时更容易进入深度专注。",
+        "能长时间单线程推进任务。",
+        "协作里最大问题是同步偏少。"
+      ],
+      "commentPrompt": "单机玩家来集合，报类型👇",
+      "cardName": "单机玩家",
+      "cardHeadline": "你不是孤独，你是默认单机模式",
+      "cardTraits": [
+        "独立运行",
+        "低频社交",
+        "自己就够"
+      ],
+      "seo": {
+        "title_en": "Solo Operator Personality Type (BXC) - NBTI",
+        "meta_description_en": "Solo Operator (BXC) profile. why do I prefer being alone. Take the NBTI personality test to understand how you actually function.",
+        "intro_en": "If prefer being alone, you might match the Solo Operator type.",
+        "keywords": [
+          "personality test",
+          "what type of person am I",
+          "why do I prefer being alone",
+          "solo operator personality",
+          "bxc personality"
+        ],
+        "faq": [
+          {
+            "q": "Why does solo operator type feel this way?",
+            "a": "Because behavior patterns are often strategy-based, not identity-fixed. NBTI maps the strategy currently used most often."
+          },
+          {
+            "q": "Can this solo operator result change over time?",
+            "a": "Yes. Context, stress, relationships, and goals can shift your behavior pattern and therefore your type output."
+          },
+          {
+            "q": "What should solo operator type improve first?",
+            "a": "Start with one friction point: execution rhythm, emotional boundary, or communication consistency."
+          }
+        ]
+      }
     },
     {
       "code": "BCS",
@@ -518,17 +1038,57 @@ window.NBTI_DATA = {
         "S": 0.4,
         "E": 0.42,
         "C": 0.84,
-        "A": 0.58,
         "X": 0.4,
         "B": 0.84,
-        "O": 0.36
+        "O": 0.36,
+        "S2": 0.58
       },
       "danmu": [
         "这个方向可以，但先看投入产出。",
         "先把基本盘稳住。",
         "理想要有，落地也要有。",
         "别只看热度，先看可持续。"
-      ]
+      ],
+      "breakLine": "你不是保守，你是在给未来做风险兜底。",
+      "realState": [
+        "下决定前会先算成本和回报。",
+        "更偏好可持续而非短期刺激。",
+        "高压下会明显转向保守策略。"
+      ],
+      "commentPrompt": "现实派会这样吗？评论区聊👇",
+      "cardName": "现实派",
+      "cardHeadline": "你不是冷血，你是优先看结果",
+      "cardTraits": [
+        "重价值",
+        "看回报",
+        "少浪费"
+      ],
+      "seo": {
+        "title_en": "Realist Personality Type (BCS) - NBTI",
+        "meta_description_en": "Realist (BCS) profile. why do I always think about practical outcomes. Take the NBTI personality test to understand how you actually function.",
+        "intro_en": "If always think about practical outcomes, you might match the Realist type.",
+        "keywords": [
+          "personality test",
+          "what type of person am I",
+          "why do I always think about practical outcomes",
+          "realist personality",
+          "bcs personality"
+        ],
+        "faq": [
+          {
+            "q": "Why does realist type feel this way?",
+            "a": "Because behavior patterns are often strategy-based, not identity-fixed. NBTI maps the strategy currently used most often."
+          },
+          {
+            "q": "Can this realist result change over time?",
+            "a": "Yes. Context, stress, relationships, and goals can shift your behavior pattern and therefore your type output."
+          },
+          {
+            "q": "What should realist type improve first?",
+            "a": "Start with one friction point: execution rhythm, emotional boundary, or communication consistency."
+          }
+        ]
+      }
     },
     {
       "code": "SACE",
@@ -553,17 +1113,57 @@ window.NBTI_DATA = {
         "S": 0.7,
         "E": 0.62,
         "C": 0.74,
-        "A": 0.88,
         "X": 0.55,
         "B": 0.56,
-        "O": 0.63
+        "O": 0.63,
+        "S2": 0.88
       },
       "danmu": [
         "我来对一下口径，大家先别吵。",
         "这个我可以补一下位。",
         "先把共识拉齐，再谈细节。",
         "都能做，但要先定主线。"
-      ]
+      ],
+      "breakLine": "你不是没个性，你是高兼容协作中枢。",
+      "realState": [
+        "能快速切换沟通方式对齐不同人。",
+        "经常补位，保证团队不断线。",
+        "容易在顾全大局时忽略自己负荷。"
+      ],
+      "commentPrompt": "万金油选手，评论区报到👇",
+      "cardName": "万金油",
+      "cardHeadline": "你不是普通，你是哪都能用",
+      "cardTraits": [
+        "适配强",
+        "很好相处",
+        "环境兼容"
+      ],
+      "seo": {
+        "title_en": "Adaptive Integrator Personality Type (SACE) - NBTI",
+        "meta_description_en": "Adaptive Integrator (SACE) profile. what type of person adapts everywhere. Take the NBTI personality test to understand how you actually function.",
+        "intro_en": "If adapts everywhere, you might match the Adaptive Integrator type.",
+        "keywords": [
+          "personality test",
+          "what type of person am I",
+          "what type of person adapts everywhere",
+          "adaptive integrator personality",
+          "sace personality"
+        ],
+        "faq": [
+          {
+            "q": "Why does adaptive integrator type feel this way?",
+            "a": "Because behavior patterns are often strategy-based, not identity-fixed. NBTI maps the strategy currently used most often."
+          },
+          {
+            "q": "Can this adaptive integrator result change over time?",
+            "a": "Yes. Context, stress, relationships, and goals can shift your behavior pattern and therefore your type output."
+          },
+          {
+            "q": "What should adaptive integrator type improve first?",
+            "a": "Start with one friction point: execution rhythm, emotional boundary, or communication consistency."
+          }
+        ]
+      }
     },
     {
       "code": "MXT",
@@ -588,17 +1188,57 @@ window.NBTI_DATA = {
         "S": 0.68,
         "E": 0.67,
         "C": 0.58,
-        "A": 0.82,
         "X": 0.86,
         "B": 0.5,
-        "O": 0.69
+        "O": 0.69,
+        "S2": 0.82
       },
       "danmu": [
         "这个场景我换个版本说。",
         "同一件事，对不同人要不同表达。",
         "我不是变来变去，我是在适配。",
         "先看场，再选打法。"
-      ]
+      ],
+      "breakLine": "你不是人设多，你是场景切换能力太强。",
+      "realState": [
+        "不同场景会自动调用不同版本。",
+        "适配力强，但频繁切换会疲劳。",
+        "偶尔会出现“我到底哪个版本”疑问。"
+      ],
+      "commentPrompt": "你也是多版本玩家吗？👇",
+      "cardName": "多版本玩家",
+      "cardHeadline": "你不是多变，你是有多个版本",
+      "cardTraits": [
+        "灵活切换",
+        "适配环境",
+        "状态很多"
+      ],
+      "seo": {
+        "title_en": "Multi-Version Type Personality Type (MXT) - NBTI",
+        "meta_description_en": "Multi-Version Type (MXT) profile. why do I feel like different versions of myself. Take the NBTI personality test to understand how you actually function.",
+        "intro_en": "If feel like different versions of myself, you might match the Multi-Version Type type.",
+        "keywords": [
+          "personality test",
+          "what type of person am I",
+          "why do I feel like different versions of myself",
+          "multi-version type personality",
+          "mxt personality"
+        ],
+        "faq": [
+          {
+            "q": "Why does multi-version type type feel this way?",
+            "a": "Because behavior patterns are often strategy-based, not identity-fixed. NBTI maps the strategy currently used most often."
+          },
+          {
+            "q": "Can this multi-version type result change over time?",
+            "a": "Yes. Context, stress, relationships, and goals can shift your behavior pattern and therefore your type output."
+          },
+          {
+            "q": "What should multi-version type type improve first?",
+            "a": "Start with one friction point: execution rhythm, emotional boundary, or communication consistency."
+          }
+        ]
+      }
     },
     {
       "code": "XEB",
@@ -623,17 +1263,57 @@ window.NBTI_DATA = {
         "S": 0.24,
         "E": 0.38,
         "C": 0.72,
-        "A": 0.42,
         "X": 0.88,
         "B": 0.93,
-        "O": 0.2
+        "O": 0.2,
+        "S2": 0.42
       },
       "danmu": [
         "我先自己把这块想清楚。",
         "结论我有了，过程以后再说。",
         "不是不回应，是还在内部处理。",
         "先让我安静地跑完逻辑。"
-      ]
+      ],
+      "breakLine": "你不是难懂，你是把大部分过程都放在后台。",
+      "realState": [
+        "输入很多，输出克制。",
+        "通常先在内部跑完逻辑再开口。",
+        "深度很高，但可见度偏低。"
+      ],
+      "commentPrompt": "看不透的人，评论区报类型👇",
+      "cardName": "看不透的人",
+      "cardHeadline": "你不是复杂，你是没说完",
+      "cardTraits": [
+        "表达克制",
+        "内部复杂",
+        "不容易读懂"
+      ],
+      "seo": {
+        "title_en": "Unreadable Type Personality Type (XEB) - NBTI",
+        "meta_description_en": "Unreadable Type (XEB) profile. why do people say I am hard to read. Take the NBTI personality test to understand how you actually function.",
+        "intro_en": "If I am hard to read, you might match the Unreadable Type type.",
+        "keywords": [
+          "personality test",
+          "what type of person am I",
+          "why do people say I am hard to read",
+          "unreadable type personality",
+          "xeb personality"
+        ],
+        "faq": [
+          {
+            "q": "Why does unreadable type type feel this way?",
+            "a": "Because behavior patterns are often strategy-based, not identity-fixed. NBTI maps the strategy currently used most often."
+          },
+          {
+            "q": "Can this unreadable type result change over time?",
+            "a": "Yes. Context, stress, relationships, and goals can shift your behavior pattern and therefore your type output."
+          },
+          {
+            "q": "What should unreadable type type improve first?",
+            "a": "Start with one friction point: execution rhythm, emotional boundary, or communication consistency."
+          }
+        ]
+      }
     },
     {
       "code": "EAS+",
@@ -658,355 +1338,731 @@ window.NBTI_DATA = {
         "S": 0.66,
         "E": 0.98,
         "C": 0.28,
-        "A": 0.84,
         "X": 0.6,
         "B": 0.24,
-        "O": 0.9
+        "O": 0.9,
+        "S2": 0.84
       },
       "danmu": [
         "我能感到整个场子的情绪在变。",
         "这句话我真的会有感觉。",
         "我不是夸张，我是接收太多。",
         "先让我抽离一下，不然会过载。"
-      ]
+      ],
+      "breakLine": "你不是戏多，你是情绪共振强度太高。",
+      "realState": [
+        "能快速感到场域情绪并被放大。",
+        "正向时感染力极强，负向时消耗也快。",
+        "需要主动抽离才能避免长期过载。"
+      ],
+      "commentPrompt": "情绪共振体在吗？评论区集合👇",
+      "cardName": "情绪共振体",
+      "cardHeadline": "你不是情绪化，你是会放大情绪",
+      "cardTraits": [
+        "情绪放大",
+        "容易共鸣",
+        "会被带动"
+      ],
+      "seo": {
+        "title_en": "Emotional Resonator Personality Type (EAS+) - NBTI",
+        "meta_description_en": "Emotional Resonator (EAS+) profile. why do I absorb emotions so easily. Take the NBTI personality test to understand how you actually function.",
+        "intro_en": "If absorb emotions so easily, you might match the Emotional Resonator type.",
+        "keywords": [
+          "personality test",
+          "what type of person am I",
+          "why do I absorb emotions so easily",
+          "emotional resonator personality",
+          "eas+ personality"
+        ],
+        "faq": [
+          {
+            "q": "Why does emotional resonator type feel this way?",
+            "a": "Because behavior patterns are often strategy-based, not identity-fixed. NBTI maps the strategy currently used most often."
+          },
+          {
+            "q": "Can this emotional resonator result change over time?",
+            "a": "Yes. Context, stress, relationships, and goals can shift your behavior pattern and therefore your type output."
+          },
+          {
+            "q": "What should emotional resonator type improve first?",
+            "a": "Start with one friction point: execution rhythm, emotional boundary, or communication consistency."
+          }
+        ]
+      }
     }
   ],
   "questions": [
     {
       "id": 1,
-      "dim": "S",
-      "text": "临时被叫去陌生饭局，你通常会？",
-      "reverse": false
+      "dim": "C",
+      "text": "我很多时候不是不想做，是越想越多，越想越乱，最后连开始都变成一件很难的事。",
+      "reverse": false,
+      "options": {
+        "A": "完全是我",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 2,
-      "dim": "S",
-      "text": "你和新同事第一次见面，通常谁先开口？",
-      "reverse": false
+      "dim": "C",
+      "text": "我经常在“这次一定要认真搞”的状态里开局，但很少能把这种状态维持到最后。",
+      "reverse": false,
+      "options": {
+        "A": "太真实了",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 3,
-      "dim": "S",
-      "text": "聚会散场后，你会觉得‘终于可以安静了’。",
-      "reverse": true
+      "dim": "C",
+      "text": "我不是没做事，是一直在准备做事，但准备这件事本身就拖了很久。",
+      "reverse": false,
+      "options": {
+        "A": "是我",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 4,
-      "dim": "S",
-      "text": "群聊里冷场时，你会主动扔梗救场。",
-      "reverse": false
+      "dim": "C",
+      "text": "我很容易在中途失去劲头，一旦那股劲没了，这件事基本就悬了。",
+      "reverse": false,
+      "options": {
+        "A": "命中",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 5,
-      "dim": "S",
-      "text": "出门一天全是人，你的电量会持续上升。",
-      "reverse": false
+      "dim": "C",
+      "text": "我有时候执行力很好，但完全看状态，一旦状态不对就很难推进。",
+      "reverse": false,
+      "options": {
+        "A": "很准",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 6,
-      "dim": "S",
-      "text": "你更习惯等别人邀请，而不是主动约人。",
-      "reverse": true
+      "dim": "C",
+      "text": "我会因为“想做到更好”而迟迟不开始，结果变成什么都没做。",
+      "reverse": false,
+      "options": {
+        "A": "是我",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 7,
-      "dim": "S",
-      "text": "去一个新环境，你很快就能混熟。",
-      "reverse": false
+      "dim": "C",
+      "text": "我更容易进入“想很多但没动”的状态，而不是“先做再说”。",
+      "reverse": false,
+      "options": {
+        "A": "太像了",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 8,
-      "dim": "S",
-      "text": "社交太多时，你会明显烦躁并想断联。",
-      "reverse": true
+      "dim": "C",
+      "text": "我一旦真正进入节奏，其实能做很多，但问题是这个节奏很难稳定出现。",
+      "reverse": false,
+      "options": {
+        "A": "完全是我",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 9,
       "dim": "E",
-      "text": "对象 5 小时没回消息说在拉肚子，你第一反应是‘不对劲’。",
-      "reverse": false
+      "text": "我会把一些小事在脑子里反复想很多遍，甚至越想越复杂。",
+      "reverse": false,
+      "options": {
+        "A": "命中了",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 10,
       "dim": "E",
-      "text": "别人一句语气不对，你会反复回放。",
-      "reverse": false
+      "text": "有时候我会意识到自己在内耗，但就是停不下来，像卡在循环里。",
+      "reverse": false,
+      "options": {
+        "A": "是我",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 11,
       "dim": "E",
-      "text": "你能很快察觉到房间里气氛变了。",
-      "reverse": false
+      "text": "别人一句不经意的话，我可能会记很久，甚至反复琢磨。",
+      "reverse": false,
+      "options": {
+        "A": "太真实",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 12,
       "dim": "E",
-      "text": "看一条伤感视频，你会被带着走很久。",
-      "reverse": false
+      "text": "我很难做到“算了就算了”，很多事情总想再想清楚一点。",
+      "reverse": false,
+      "options": {
+        "A": "很准",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 13,
       "dim": "E",
-      "text": "遇到冲突时，你通常不会被情绪影响判断。",
-      "reverse": true
+      "text": "我情绪变化其实挺快的，只是大多数时候不会表现出来。",
+      "reverse": false,
+      "options": {
+        "A": "是我",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 14,
       "dim": "E",
-      "text": "别人说‘没事’，你通常觉得其实有事。",
-      "reverse": false
+      "text": "我经常一边想“别想了”，一边继续想。",
+      "reverse": false,
+      "options": {
+        "A": "太像了",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 15,
       "dim": "E",
-      "text": "你经常能把别人的情绪当成自己的情绪。",
-      "reverse": false
+      "text": "我对一些细节的反应会比别人更大，但不一定说出来。",
+      "reverse": false,
+      "options": {
+        "A": "命中",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 16,
       "dim": "E",
-      "text": "你很少因为别人的态度波动自己的状态。",
-      "reverse": true
+      "text": "我不是情绪很多，是很多情绪都会留下来。",
+      "reverse": false,
+      "options": {
+        "A": "是我",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 17,
-      "dim": "C",
-      "text": "你会给一周安排明确计划并尽量执行。",
-      "reverse": false
+      "dim": "X",
+      "text": "我脑子里经常同时存在好几个“可以试试”的方向，但很难只选一个。",
+      "reverse": false,
+      "options": {
+        "A": "完全是我",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 18,
-      "dim": "C",
-      "text": "你常常拖到最后一刻才开始做关键任务。",
-      "reverse": true
+      "dim": "X",
+      "text": "我很容易被新的东西吸引，哪怕现在手上的事情还没做完。",
+      "reverse": false,
+      "options": {
+        "A": "太真实",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 19,
-      "dim": "C",
-      "text": "即使没人监督，你也会按节奏推进。",
-      "reverse": false
+      "dim": "X",
+      "text": "我不是没在做，只是总觉得“可能还有更好的做法”。",
+      "reverse": false,
+      "options": {
+        "A": "是我",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 20,
-      "dim": "C",
-      "text": "你答应别人的事情通常会按时完成。",
-      "reverse": false
+      "dim": "X",
+      "text": "我有时候更享受“刚开始”的感觉，而不是把事情做完。",
+      "reverse": false,
+      "options": {
+        "A": "很准",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 21,
-      "dim": "C",
-      "text": "你很容易被短视频/消息打断主线。",
-      "reverse": true
+      "dim": "X",
+      "text": "一旦事情变得重复或固定，我的兴趣会明显下降。",
+      "reverse": false,
+      "options": {
+        "A": "命中",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 22,
-      "dim": "C",
-      "text": "你会主动做复盘，而不只是做完就算。",
-      "reverse": false
+      "dim": "X",
+      "text": "我很难长期只做一件事，总会想看看别的可能性。",
+      "reverse": false,
+      "options": {
+        "A": "太像了",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 23,
-      "dim": "C",
-      "text": "你更靠临场状态，而不是固定方法。",
-      "reverse": true
+      "dim": "X",
+      "text": "我会不断调整方向，而不是一直沿着一个方向走。",
+      "reverse": false,
+      "options": {
+        "A": "是我",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 24,
-      "dim": "C",
-      "text": "你能长期坚持一个看起来无聊但重要的习惯。",
-      "reverse": false
+      "dim": "X",
+      "text": "我很多选择不是因为必要，而是因为“这个更有意思”。",
+      "reverse": false,
+      "options": {
+        "A": "完全是我",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 25,
-      "dim": "A",
-      "text": "做项目时，你会先想‘怎么一起把它做好’。",
-      "reverse": false
+      "dim": "S",
+      "text": "我不算社恐，但主动去建立关系这件事对我来说不太自然。",
+      "reverse": false,
+      "options": {
+        "A": "是我",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 26,
-      "dim": "A",
-      "text": "团队意见不一致时，你会主动做协调。",
-      "reverse": false
+      "dim": "S",
+      "text": "我可以聊得很好，但前提是这个聊天已经开始了。",
+      "reverse": false,
+      "options": {
+        "A": "太真实",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 27,
-      "dim": "A",
-      "text": "你更喜欢单干，不太愿意和别人对齐。",
-      "reverse": true
+      "dim": "S",
+      "text": "我更习惯被动进入关系，而不是主动推进。",
+      "reverse": false,
+      "options": {
+        "A": "命中",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 28,
-      "dim": "A",
-      "text": "你愿意为了整体进度临时补位。",
-      "reverse": false
+      "dim": "S",
+      "text": "有时候我在场，但并没有真正参与进去。",
+      "reverse": false,
+      "options": {
+        "A": "是我",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 29,
-      "dim": "A",
-      "text": "别人求助时，你第一反应是‘我能帮点什么’。",
-      "reverse": false
+      "dim": "S",
+      "text": "我在不同场合下会有明显不同的状态。",
+      "reverse": false,
+      "options": {
+        "A": "很准",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 30,
-      "dim": "A",
-      "text": "你常因‘怕麻烦别人’而不说需求。",
-      "reverse": true
+      "dim": "S",
+      "text": "我可以很外向，也可以很安静，完全看当时的感觉。",
+      "reverse": false,
+      "options": {
+        "A": "太像了",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 31,
-      "dim": "A",
-      "text": "你擅长把不同风格的人拉到同一频道。",
-      "reverse": false
+      "dim": "S",
+      "text": "我不太喜欢无意义的社交，但也不会完全拒绝。",
+      "reverse": false,
+      "options": {
+        "A": "是我",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 32,
-      "dim": "A",
-      "text": "你讨厌合作，因为效率一定会被拖慢。",
-      "reverse": true
+      "dim": "S",
+      "text": "我更容易在熟悉的关系里表达，而不是陌生环境。",
+      "reverse": false,
+      "options": {
+        "A": "命中",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 33,
-      "dim": "X",
-      "text": "你会因为好奇心去学一个暂时用不到的技能。",
-      "reverse": false
+      "dim": "B",
+      "text": "我其实很清楚哪些关系对我来说是消耗，但不一定会立刻退出。",
+      "reverse": false,
+      "options": {
+        "A": "是我",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 34,
-      "dim": "X",
-      "text": "你对新工具/新玩法总想先试一下。",
-      "reverse": false
+      "dim": "B",
+      "text": "我不太擅长拒绝别人，哪怕心里其实是不想的。",
+      "reverse": false,
+      "options": {
+        "A": "太真实",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 35,
-      "dim": "X",
-      "text": "一个稳定方案能用，你基本不会再折腾。",
-      "reverse": true
+      "dim": "B",
+      "text": "我会在关系中慢慢退，而不是直接说清楚。",
+      "reverse": false,
+      "options": {
+        "A": "命中",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 36,
-      "dim": "X",
-      "text": "你常冒出‘要不我们换个思路’。",
-      "reverse": false
+      "dim": "B",
+      "text": "我会在“想拒绝”和“怕影响关系”之间反复拉扯。",
+      "reverse": false,
+      "options": {
+        "A": "是我",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 37,
-      "dim": "X",
-      "text": "你对未知机会的兴奋感很强。",
-      "reverse": false
+      "dim": "B",
+      "text": "我更容易在事后才意识到“其实当时应该拒绝”。",
+      "reverse": false,
+      "options": {
+        "A": "很准",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 38,
-      "dim": "X",
-      "text": "重复性工作会快速消耗你的耐心。",
-      "reverse": false
+      "dim": "B",
+      "text": "我有边界，但表达边界这件事对我来说不太容易。",
+      "reverse": false,
+      "options": {
+        "A": "太像了",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 39,
-      "dim": "X",
-      "text": "你更偏好确定性，不喜欢实验。",
-      "reverse": true
+      "dim": "B",
+      "text": "我有时候会为了关系的顺利，而降低自己的真实想法。",
+      "reverse": false,
+      "options": {
+        "A": "是我",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 40,
-      "dim": "X",
-      "text": "你愿意为新体验承担可控风险。",
-      "reverse": false
+      "dim": "B",
+      "text": "我不是没底线，是很多时候不想把事情搞得太僵。",
+      "reverse": false,
+      "options": {
+        "A": "命中",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 41,
-      "dim": "B",
-      "text": "你会明确告诉别人‘这个我不接受’。",
-      "reverse": false
+      "dim": "O",
+      "text": "我其实有很多想法，但不是每一个都愿意说出来。",
+      "reverse": false,
+      "options": {
+        "A": "是我",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 42,
-      "dim": "B",
-      "text": "你很少因为不好意思而勉强自己。",
-      "reverse": false
+      "dim": "O",
+      "text": "我表达欲是波动的，有时候特别想说，有时候一句都不想说。",
+      "reverse": false,
+      "options": {
+        "A": "太真实",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 43,
-      "dim": "B",
-      "text": "你经常为了和气先委屈自己。",
-      "reverse": true
+      "dim": "O",
+      "text": "我更习惯在脑子里把话说完，而不是说出来。",
+      "reverse": false,
+      "options": {
+        "A": "命中",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 44,
-      "dim": "B",
-      "text": "你对隐私和个人空间有明确要求。",
-      "reverse": false
+      "dim": "O",
+      "text": "我不是没表达能力，是很多时候觉得没必要表达。",
+      "reverse": false,
+      "options": {
+        "A": "是我",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 45,
-      "dim": "B",
-      "text": "别人临时加任务，你会默认接下。",
-      "reverse": true
+      "dim": "O",
+      "text": "当我真的想表达的时候，会一口气说很多。",
+      "reverse": false,
+      "options": {
+        "A": "很准",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 46,
-      "dim": "B",
-      "text": "你能区分‘善良’和‘无限让步’。",
-      "reverse": false
+      "dim": "O",
+      "text": "我会根据对象决定说多少，而不是一直保持同一种表达状态。",
+      "reverse": false,
+      "options": {
+        "A": "太像了",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 47,
-      "dim": "B",
-      "text": "你不太会拒绝熟人请求。",
-      "reverse": true
+      "dim": "O",
+      "text": "我很多时候是“有想法，但没说”。",
+      "reverse": false,
+      "options": {
+        "A": "是我",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 48,
-      "dim": "B",
-      "text": "你会为重要关系设置明确规则。",
-      "reverse": false
+      "dim": "O",
+      "text": "我表达这件事，更像是“选择性开启”的。",
+      "reverse": false,
+      "options": {
+        "A": "命中",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 49,
-      "dim": "O",
-      "text": "脑子里有想法时，你很想立刻说出来。",
-      "reverse": false
+      "dim": "S2",
+      "text": "我看起来还算稳定，但内在其实是不断变化的。",
+      "reverse": false,
+      "options": {
+        "A": "是我",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 50,
-      "dim": "O",
-      "text": "你擅长把复杂感受讲成别人能懂的话。",
-      "reverse": false
+      "dim": "S2",
+      "text": "我有自己的想法，但不一定会坚持到底。",
+      "reverse": false,
+      "options": {
+        "A": "太真实",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 51,
-      "dim": "O",
-      "text": "你经常‘想了很多但懒得解释’。",
-      "reverse": true
+      "dim": "S2",
+      "text": "我不是没方向，是方向会变。",
+      "reverse": false,
+      "options": {
+        "A": "命中",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 52,
-      "dim": "O",
-      "text": "在讨论里，你通常不是最先发言的人。",
-      "reverse": true
+      "dim": "S2",
+      "text": "我在不同阶段会成为完全不一样的人。",
+      "reverse": false,
+      "options": {
+        "A": "是我",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 53,
-      "dim": "O",
-      "text": "你会主动分享观点，即使可能被反驳。",
-      "reverse": false
+      "dim": "S2",
+      "text": "我有时候也会怀疑“哪个才是我”。",
+      "reverse": false,
+      "options": {
+        "A": "很准",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 54,
-      "dim": "O",
-      "text": "你更习惯把情绪吞下去，而不是说出来。",
-      "reverse": true
+      "dim": "S2",
+      "text": "我不是没有核心，是这个核心不太稳定。",
+      "reverse": false,
+      "options": {
+        "A": "太像了",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 55,
-      "dim": "O",
-      "text": "别人常说你表达有画面感。",
-      "reverse": false
+      "dim": "S2",
+      "text": "我更像是在不断调整，而不是一直固定。",
+      "reverse": false,
+      "options": {
+        "A": "是我",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     },
     {
       "id": 56,
-      "dim": "O",
-      "text": "你倾向于‘先表达再修正’，而不是憋到完美。",
-      "reverse": false
+      "dim": "S2",
+      "text": "我不是一个版本的人。",
+      "reverse": false,
+      "options": {
+        "A": "命中",
+        "B": "有点",
+        "C": "不太",
+        "D": "完全不是"
+      }
     }
   ],
   "rankingsMock": [
@@ -1078,5 +2134,477 @@ window.NBTI_DATA = {
       "q": "排行榜是真实的吗？",
       "a": "当前版本展示 mock 数据，用于页面体验与传播测试。"
     }
-  ]
+  ],
+  "rankingsData": {
+    "summary": {
+      "total_submissions": 128432,
+      "types_on_board": 18,
+      "types_total": 18,
+      "last_updated_label": "3分钟前",
+      "today_new": 842
+    },
+    "rankings": {
+      "all_time": [
+        {
+          "rank": 1,
+          "type_name": "脑洞玩家",
+          "code": "XOS",
+          "count": 16422,
+          "share": 12.8,
+          "trend": "↑2"
+        },
+        {
+          "rank": 2,
+          "type_name": "内耗大师",
+          "code": "EXS",
+          "count": 14531,
+          "share": 11.3,
+          "trend": "—"
+        },
+        {
+          "rank": 3,
+          "type_name": "情绪雷达",
+          "code": "SEA",
+          "count": 12321,
+          "share": 9.6,
+          "trend": "↑1"
+        },
+        {
+          "rank": 4,
+          "type_name": "单机玩家",
+          "code": "BXC",
+          "count": 11204,
+          "share": 8.7,
+          "trend": "↓1"
+        },
+        {
+          "rank": 5,
+          "type_name": "社牛本牛",
+          "code": "SOC",
+          "count": 9842,
+          "share": 7.7,
+          "trend": "↑3"
+        },
+        {
+          "rank": 6,
+          "type_name": "看不透的人",
+          "code": "XEB",
+          "count": 8965,
+          "share": 7,
+          "trend": "—"
+        },
+        {
+          "rank": 7,
+          "type_name": "情绪流动体",
+          "code": "EAS",
+          "count": 7980,
+          "share": 6.2,
+          "trend": "↑2"
+        },
+        {
+          "rank": 8,
+          "type_name": "多版本玩家",
+          "code": "MXT",
+          "count": 7102,
+          "share": 5.5,
+          "trend": "↓2"
+        },
+        {
+          "rank": 9,
+          "type_name": "万金油",
+          "code": "SACE",
+          "count": 6844,
+          "share": 5.3,
+          "trend": "—"
+        },
+        {
+          "rank": 10,
+          "type_name": "人类观察者",
+          "code": "XSB",
+          "count": 6201,
+          "share": 4.8,
+          "trend": "↑1"
+        },
+        {
+          "rank": 11,
+          "type_name": "高门槛玩家",
+          "code": "SBC",
+          "count": 5933,
+          "share": 4.6,
+          "trend": "↑4"
+        },
+        {
+          "rank": 12,
+          "type_name": "高防御体质",
+          "code": "BXE",
+          "count": 5420,
+          "share": 4.2,
+          "trend": "↓3"
+        },
+        {
+          "rank": 13,
+          "type_name": "靠谱本体",
+          "code": "CEC",
+          "count": 4988,
+          "share": 3.9,
+          "trend": "—"
+        },
+        {
+          "rank": 14,
+          "type_name": "秩序控",
+          "code": "CBC",
+          "count": 4102,
+          "share": 3.2,
+          "trend": "↓1"
+        },
+        {
+          "rank": 15,
+          "type_name": "控盘选手",
+          "code": "BSO",
+          "count": 3876,
+          "share": 3,
+          "trend": "↑2"
+        },
+        {
+          "rank": 16,
+          "type_name": "现实派",
+          "code": "BCS",
+          "count": 3211,
+          "share": 2.5,
+          "trend": "—"
+        },
+        {
+          "rank": 17,
+          "type_name": "情绪共振体",
+          "code": "EAS+",
+          "count": 2876,
+          "share": 2.2,
+          "trend": "NEW"
+        },
+        {
+          "rank": 18,
+          "type_name": "稳定输出机",
+          "code": "XOC",
+          "count": 2512,
+          "share": 2,
+          "trend": "↓2"
+        }
+      ],
+      "seven_day": [
+        {
+          "rank": 1,
+          "type_name": "高门槛玩家",
+          "code": "SBC",
+          "count": 1188,
+          "share": 10,
+          "trend": "↑4"
+        },
+        {
+          "rank": 2,
+          "type_name": "脑洞玩家",
+          "code": "XOS",
+          "count": 1402,
+          "share": 11.8,
+          "trend": "↑1"
+        },
+        {
+          "rank": 3,
+          "type_name": "内耗大师",
+          "code": "EXS",
+          "count": 1297,
+          "share": 10.9,
+          "trend": "—"
+        },
+        {
+          "rank": 4,
+          "type_name": "情绪雷达",
+          "code": "SEA",
+          "count": 1128,
+          "share": 9.5,
+          "trend": "↑1"
+        },
+        {
+          "rank": 5,
+          "type_name": "社牛本牛",
+          "code": "SOC",
+          "count": 936,
+          "share": 7.9,
+          "trend": "↑2"
+        },
+        {
+          "rank": 6,
+          "type_name": "多版本玩家",
+          "code": "MXT",
+          "count": 832,
+          "share": 7,
+          "trend": "↑1"
+        },
+        {
+          "rank": 7,
+          "type_name": "单机玩家",
+          "code": "BXC",
+          "count": 796,
+          "share": 6.7,
+          "trend": "↓2"
+        },
+        {
+          "rank": 8,
+          "type_name": "万金油",
+          "code": "SACE",
+          "count": 772,
+          "share": 6.5,
+          "trend": "—"
+        },
+        {
+          "rank": 9,
+          "type_name": "看不透的人",
+          "code": "XEB",
+          "count": 689,
+          "share": 5.8,
+          "trend": "—"
+        },
+        {
+          "rank": 10,
+          "type_name": "情绪流动体",
+          "code": "EAS",
+          "count": 642,
+          "share": 5.4,
+          "trend": "↑1"
+        },
+        {
+          "rank": 11,
+          "type_name": "人类观察者",
+          "code": "XSB",
+          "count": 594,
+          "share": 5,
+          "trend": "—"
+        },
+        {
+          "rank": 12,
+          "type_name": "高防御体质",
+          "code": "BXE",
+          "count": 523,
+          "share": 4.4,
+          "trend": "↓1"
+        },
+        {
+          "rank": 13,
+          "type_name": "靠谱本体",
+          "code": "CEC",
+          "count": 475,
+          "share": 4,
+          "trend": "—"
+        },
+        {
+          "rank": 14,
+          "type_name": "秩序控",
+          "code": "CBC",
+          "count": 404,
+          "share": 3.4,
+          "trend": "↓1"
+        },
+        {
+          "rank": 15,
+          "type_name": "控盘选手",
+          "code": "BSO",
+          "count": 380,
+          "share": 3.2,
+          "trend": "↑2"
+        },
+        {
+          "rank": 16,
+          "type_name": "现实派",
+          "code": "BCS",
+          "count": 297,
+          "share": 2.5,
+          "trend": "—"
+        },
+        {
+          "rank": 17,
+          "type_name": "情绪共振体",
+          "code": "EAS+",
+          "count": 249,
+          "share": 2.1,
+          "trend": "NEW"
+        },
+        {
+          "rank": 18,
+          "type_name": "稳定输出机",
+          "code": "XOC",
+          "count": 238,
+          "share": 2,
+          "trend": "↓1"
+        }
+      ],
+      "today": [
+        {
+          "rank": 1,
+          "type_name": "高门槛玩家",
+          "code": "SBC",
+          "count": 142,
+          "share": 12.1,
+          "trend": "↑4"
+        },
+        {
+          "rank": 2,
+          "type_name": "脑洞玩家",
+          "code": "XOS",
+          "count": 139,
+          "share": 11.9,
+          "trend": "↑1"
+        },
+        {
+          "rank": 3,
+          "type_name": "情绪雷达",
+          "code": "SEA",
+          "count": 121,
+          "share": 10.3,
+          "trend": "↑2"
+        },
+        {
+          "rank": 4,
+          "type_name": "内耗大师",
+          "code": "EXS",
+          "count": 116,
+          "share": 9.9,
+          "trend": "—"
+        },
+        {
+          "rank": 5,
+          "type_name": "社牛本牛",
+          "code": "SOC",
+          "count": 96,
+          "share": 8.2,
+          "trend": "↑3"
+        },
+        {
+          "rank": 6,
+          "type_name": "多版本玩家",
+          "code": "MXT",
+          "count": 88,
+          "share": 7.5,
+          "trend": "↑1"
+        },
+        {
+          "rank": 7,
+          "type_name": "万金油",
+          "code": "SACE",
+          "count": 79,
+          "share": 6.7,
+          "trend": "—"
+        },
+        {
+          "rank": 8,
+          "type_name": "单机玩家",
+          "code": "BXC",
+          "count": 74,
+          "share": 6.3,
+          "trend": "↓2"
+        },
+        {
+          "rank": 9,
+          "type_name": "看不透的人",
+          "code": "XEB",
+          "count": 68,
+          "share": 5.8,
+          "trend": "—"
+        },
+        {
+          "rank": 10,
+          "type_name": "情绪流动体",
+          "code": "EAS",
+          "count": 61,
+          "share": 5.2,
+          "trend": "↑1"
+        },
+        {
+          "rank": 11,
+          "type_name": "人类观察者",
+          "code": "XSB",
+          "count": 56,
+          "share": 4.8,
+          "trend": "—"
+        },
+        {
+          "rank": 12,
+          "type_name": "高防御体质",
+          "code": "BXE",
+          "count": 52,
+          "share": 4.4,
+          "trend": "↓1"
+        },
+        {
+          "rank": 13,
+          "type_name": "靠谱本体",
+          "code": "CEC",
+          "count": 46,
+          "share": 3.9,
+          "trend": "—"
+        },
+        {
+          "rank": 14,
+          "type_name": "秩序控",
+          "code": "CBC",
+          "count": 38,
+          "share": 3.2,
+          "trend": "↓1"
+        },
+        {
+          "rank": 15,
+          "type_name": "控盘选手",
+          "code": "BSO",
+          "count": 35,
+          "share": 3,
+          "trend": "↑2"
+        },
+        {
+          "rank": 16,
+          "type_name": "现实派",
+          "code": "BCS",
+          "count": 31,
+          "share": 2.6,
+          "trend": "—"
+        },
+        {
+          "rank": 17,
+          "type_name": "情绪共振体",
+          "code": "EAS+",
+          "count": 27,
+          "share": 2.3,
+          "trend": "NEW"
+        },
+        {
+          "rank": 18,
+          "type_name": "稳定输出机",
+          "code": "XOC",
+          "count": 24,
+          "share": 2,
+          "trend": "↓1"
+        }
+      ]
+    },
+    "insights": {
+      "top_3": [
+        "XOS",
+        "EXS",
+        "SEA"
+      ],
+      "rarest_3": [
+        "XOC",
+        "EAS+",
+        "BCS"
+      ],
+      "fastest_rising": "SBC",
+      "most_confused_pairs": [
+        [
+          "XOS",
+          "MXT"
+        ],
+        [
+          "EXS",
+          "SEA"
+        ]
+      ]
+    }
+  }
 };

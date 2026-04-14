@@ -24,55 +24,57 @@
 
       <section class="hero">
         <h1>这套人格系统把我看透了</h1>
-        <p class="lead">不是MBTI，这是更接近你真实状态的版本。</p>
+        <p class="lead">不是MBTI 这是更接近你真实状态的版本</p>
         <div class="cta-row">
           <a class="btn" href="/test/">👉 进入测试（2分钟）</a>
-          <a class="btn secondary" href="/types/">先看18种人格</a>
         </div>
+        <p class="muted">共56题 · 约2分钟</p>
       </section>
 
       <section class="section">
-        <h2>破防句</h2>
-        <div class="grid">
-          <article class="card">
-            <p>你不是拖延，你是启动成本太高。</p>
-          </article>
-          <article class="card">
-            <p>你不是三分钟热度，你是热度太多，三分钟一个。</p>
-          </article>
-          <article class="card">
-            <p>你不是不会拒绝，你是害怕关系掉线。</p>
-          </article>
-        </div>
+        <h2>你可能会在这里看到自己</h2>
+        <article class="card hook-rotator-card">
+          <p id="homeHookText" class="lead">你不是懒 你是一直在准备开始</p>
+          <p class="muted">左右滑动 / 自动轮播</p>
+        </article>
       </section>
 
       <section class="section">
         <h2>题目示例</h2>
         <article class="card">
-          <p>对象5小时没回消息，说在拉肚子，你会？</p>
-          <p class="muted">A 完全是我 · B 有点像 · C 不太像 · D 完全不是</p>
+          <p>我很多时候不是不想做，是越想越多，最后反而不开始。</p>
+          <p class="muted">A. 完全是我 · B. 有点像 · C. 不太像 · D. 完全不是</p>
+          <p class="muted">不用思考，选感觉就行</p>
         </article>
       </section>
 
       <section class="section">
         <h2>结果预期</h2>
-        <p>你会得到：主人格（必出） + 次人格（可选） + 可直接分享的人话解析。</p>
-      </section>
-
-      <section class="section">
-        <h2>社会证明</h2>
-        <p class="muted">很多人测完都会发这个👇</p>
         <article class="card">
-          <p>我是「脑洞玩家 XOS」</p>
-          <p>你不是三分钟热度，你是热度太多，三分钟一个</p>
-          <p>👉 来测测你是哪种人</p>
+          <p>完成后你会得到：</p>
+          <p>✓ 你的核心人格类型</p>
+          <p>✓ 一句话“被看透”总结</p>
+          <p>✓ 你为什么会这样</p>
+          <p>✓ 你卡在哪里</p>
+          <p>✓ 你更适合怎么做</p>
+          <p class="muted">做完可生成专属人格卡</p>
         </article>
       </section>
 
       <section class="section">
-        <h2>CTA</h2>
+        <h2>社会证明</h2>
+        <p class="muted">已经有 132,842 人测过</p>
+        <article class="card">
+          <p class="danmu-line">“这不就是我？？？”</p>
+          <p class="danmu-line">“我被看透了”</p>
+          <p class="danmu-line">“救命”</p>
+        </article>
+      </section>
+
+      <section class="section">
+        <h2>别想太久</h2>
         <div class="cta-row">
-          <a class="btn" href="/test/">开始测试</a>
+          <a class="btn" href="/test/">👉 进入测试</a>
         </div>
       </section>
 
@@ -80,5 +82,21 @@
         <p>NBTI V2.0 · 纯静态版 · <span data-year></span></p>
       </footer>
     </main>
+    <script>
+      (function () {
+        const lines = [
+          "你不是懒 你是一直在准备开始",
+          "你不是想太多 你是停不下来",
+          "你不是社恐 你是懒得社交"
+        ];
+        const el = document.getElementById("homeHookText");
+        if (!el) return;
+        let i = 0;
+        setInterval(function () {
+          i = (i + 1) % lines.length;
+          el.textContent = lines[i];
+        }, 2600);
+      })();
+    </script>
   </body>
 </html>

@@ -21,14 +21,25 @@
         </nav>
       </header>
       <section class="hero">
-        <h1>18 种人格类型</h1>
-        <p class="lead">每一种都不是“标签”，而是你正在使用的行为策略。</p>
+        <h1>你更像哪种人</h1>
+        <p class="lead">（也可能不止一种）</p>
+        <p class="muted">点击任意类型查看详情</p>
       </section>
       <section class="section">
-        <div id="types-list-app" class="type-list"></div>
+        <div id="types-filter-bar" class="filter-row">
+          <button class="chip active" data-filter="all">🔥 最容易对号入座</button>
+          <button class="chip" data-filter="think">🧠 想很多型</button>
+          <button class="chip" data-filter="multi">🎭 多版本型</button>
+          <button class="chip" data-filter="social">📢 社交关系型</button>
+          <button class="chip" data-filter="steady">🧱 稳定执行型</button>
+        </div>
       </section>
+      <section class="section">
+        <div id="types-list-app" class="feed-grid"></div>
+      </section>
+      <a class="btn floating-cta" href="/test/">👉 测测我是哪种人</a>
       <footer class="footer">
-        <p>类型页 SEO 结构：解释 → 对比 → FAQ</p>
+        <p>你觉得你更像哪一个？</p>
       </footer>
     </main>
   </body>
