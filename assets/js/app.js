@@ -277,7 +277,8 @@
         : Array.isArray(type.traits)
           ? type.traits.slice(0, 3)
           : [],
-      emoji: CARD_EMOJI_MAP[type.code] || ["✨", "🧩", "⚡"]
+      emoji: CARD_EMOJI_MAP[type.code] || ["✨", "🧩", "⚡"],
+      danmu: Array.isArray(type.danmu) ? type.danmu.slice(0, 4) : []
     };
   }
 
@@ -307,37 +308,68 @@
     ctx.fillStyle = "#111111";
     ctx.textBaseline = "top";
 
-    ctx.font = "700 42px Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif";
-    ctx.fillText(`NBTI REPORT #${payload.code}`, pad, 96);
+    ctx.fillStyle = "#fdfcf8";
+    ctx.fillRect(56, 56, w - 112, h - 112);
+    ctx.strokeStyle = "#111111";
+    ctx.lineWidth = 3;
+    ctx.strokeRect(56, 56, w - 112, h - 112);
+    ctx.setLineDash([12, 10]);
+    ctx.beginPath();
+    ctx.moveTo(90, 182);
+    ctx.lineTo(w - 90, 182);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(90, h - 250);
+    ctx.lineTo(w - 90, h - 250);
+    ctx.stroke();
+    ctx.setLineDash([]);
 
-    ctx.font = "800 88px Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif";
-    ctx.fillText(payload.type_name, pad, 190);
+    ctx.fillStyle = "#111111";
+    ctx.font = "700 40px Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif";
+    ctx.fillText(`NBTI 结果票据 #${payload.code}`, pad, 104);
 
-    ctx.font = "700 52px Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif";
+    ctx.font = "800 86px Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif";
+    ctx.fillText(payload.type_name, pad, 218);
+
+    ctx.font = "700 48px Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif";
     const headline = wrapLines(ctx, payload.headline, contentW - 24, 2);
-    let y = 330;
+    let y = 336;
     ctx.fillText("「", pad, y);
     y += 8;
     headline.forEach((line) => {
       ctx.fillText(line, pad + 46, y);
-      y += 68;
+      y += 64;
     });
-    ctx.fillText("」", pad + 10, y + 8);
+    ctx.fillText("」", pad + 10, y + 4);
 
-    ctx.font = "600 40px Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif";
-    const dividerY = y + 90;
-    ctx.fillText("——————", pad, dividerY);
-
-    ctx.font = "600 44px Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif";
-    let ty = dividerY + 90;
+    ctx.font = "600 38px Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif";
+    let ty = y + 84;
     payload.traits.slice(0, 3).forEach((t, i) => {
       const emo = payload.emoji[i] || "✨";
       ctx.fillText(`${emo} ${t}`, pad, ty);
-      ty += 82;
+      ty += 72;
     });
 
-    ctx.font = "600 40px Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif";
-    ctx.fillText("—— 测测你是哪种人", pad, h - 140);
+    const danmuSeed = payload.danmu && payload.danmu.length ? payload.danmu : ["这不就是我？？？", "太真实了", "我被看透了", "后悔点进来"];
+    ctx.font = "500 30px Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif";
+    ctx.fillStyle = "#333333";
+    ctx.fillText(`弹幕：${danmuSeed.join("  ·  ")}`, pad, ty + 18);
+
+    const qrSize = 210;
+    const qrX = w - pad - qrSize;
+    const qrY = h - 220 - qrSize;
+    ctx.strokeStyle = "#111111";
+    ctx.lineWidth = 2;
+    ctx.strokeRect(qrX, qrY, qrSize, qrSize);
+    ctx.font = "500 24px Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif";
+    ctx.fillStyle = "#555555";
+    ctx.fillText("扫码访问", qrX + 54, qrY + qrSize + 12);
+
+    ctx.font = "600 30px Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif";
+    ctx.fillStyle = "#111111";
+    ctx.fillText("https://nbti.dofun.fun/", pad, h - 188);
+    ctx.font = "600 34px Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif";
+    ctx.fillText("—— 测测你是哪种人", pad, h - 136);
   }
 
   function drawTemplatePatch(ctx, payload, w, h) {
@@ -395,12 +427,41 @@
     canvas.height = height;
     const ctx = canvas.getContext("2d");
     const payload = cardPayload(type);
+    async function drawQrToCard() {
+      const qrSize = 210;
+      const qrX = width - 96 - qrSize;
+      const qrY = height - 220 - qrSize;
+      const loadImg = (src) =>
+        new Promise((resolve, reject) => {
+          const im = new Image();
+          im.onload = () => resolve(im);
+          im.onerror = reject;
+          im.src = src;
+        });
+      try {
+        const img = await loadImg("/assets/icons/site-qr.png");
+        ctx.drawImage(img, qrX, qrY, qrSize, qrSize);
+      } catch (e) {
+        try {
+          const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent("https://nbti.dofun.fun/")}`;
+          const res = await fetch(qrUrl, { cache: "no-store" });
+          const blob = await res.blob();
+          const tmp = URL.createObjectURL(blob);
+          const img = await loadImg(tmp);
+          ctx.drawImage(img, qrX, qrY, qrSize, qrSize);
+          URL.revokeObjectURL(tmp);
+        } catch (e2) {
+          // keep fallback frame
+        }
+      }
+    }
     if (template === "patch") {
       drawTemplatePatch(ctx, payload, width, height);
     } else if (template === "danmu") {
       drawTemplateDanmu(ctx, payload, type.danmu || [], width, height);
     } else {
       drawTemplateResult(ctx, payload, width, height);
+      await drawQrToCard();
     }
 
     return new Promise((resolve) => {
@@ -517,7 +578,7 @@
       return;
     }
 
-    const shareText = `我是「${type.name} ${type.code}」\n\n${type.oneLiner}\n\n👉 来测测你是哪种人`;
+    const shareText = `我是「${type.name} ${type.code}」\n\n${type.oneLiner}\n\n👉 来测测你是哪种人：https://nbti.dofun.fun/`;
 
     root.innerHTML = `
       <section class="card result-card-hero">
@@ -529,10 +590,20 @@
         <h1>${type.name} ${type.code}</h1>
         <p class="lead">${type.oneLiner}</p>
         ${secondary ? `<p class="muted">次人格倾向：${secondary.name} ${secondary.code}</p>` : ""}
+        ${
+          type.danmu && type.danmu.length
+            ? `
+        <div class="danmu-wall result-danmu-wall">
+          <div class="danmu-row">
+            ${type.danmu.map((line) => `<span class="danmu-bubble">“${escapeHtml(line)}”</span>`).join("")}
+            ${type.danmu.map((line) => `<span class="danmu-bubble">“${escapeHtml(line)}”</span>`).join("")}
+          </div>
+        </div>
+        `
+            : ""
+        }
         <div class="cta-row">
           <button class="btn" id="saveResultCardBtn">保存结果卡</button>
-          <button class="btn secondary" id="savePatchCardBtn">保存补刀卡</button>
-          <button class="btn ghost" id="saveDanmuCardBtn">保存弹幕卡</button>
         </div>
       </section>
       <section class="section">
@@ -561,16 +632,6 @@
         <p><strong>成长建议：</strong>${withBreaks(type.growth)}</p>
         <p><strong>NBTI 翻译成人话：</strong>${withBreaks(type.humanTranslation)}</p>
       </section>
-      ${
-        type.danmu && type.danmu.length
-          ? `
-      <section class="section">
-        <h2>这个类型常见弹幕</h2>
-        <div class="card">${type.danmu.map((line) => `<p>“${line}”</p>`).join("")}</div>
-      </section>
-      `
-          : ""
-      }
       <section class="section">
         <h2>评论区引导</h2>
         <article class="card">
@@ -579,7 +640,7 @@
         </article>
       </section>
       <section class="section">
-        <h2>分享区</h2>
+        <h2>分享我的结果</h2>
         <pre class="card" id="share-text">${shareText}</pre>
         <div class="cta-row">
           <button class="btn" id="copyShare">复制分享文案</button>
@@ -591,8 +652,6 @@
 
     const copyBtn = document.getElementById("copyShare");
     const saveResultCardBtn = document.getElementById("saveResultCardBtn");
-    const savePatchCardBtn = document.getElementById("savePatchCardBtn");
-    const saveDanmuCardBtn = document.getElementById("saveDanmuCardBtn");
 
     async function saveCard(btn, template, suffix) {
       btn.disabled = true;
@@ -622,8 +681,6 @@
     }
 
     saveResultCardBtn.addEventListener("click", () => saveCard(saveResultCardBtn, "result", "result"));
-    savePatchCardBtn.addEventListener("click", () => saveCard(savePatchCardBtn, "patch", "patch"));
-    saveDanmuCardBtn.addEventListener("click", () => saveCard(saveDanmuCardBtn, "danmu", "danmu"));
 
     copyBtn.addEventListener("click", async () => {
       try {
@@ -652,7 +709,7 @@
       : Array.isArray(type.traits)
         ? type.traits.slice(0, 3)
         : ["特征1", "特征2", "特征3"];
-    const shareText = `我是「${type.name} ${type.code}」\n\n${type.oneLiner}\n\n👉 来测测你是哪种人`;
+    const shareText = `我是「${type.name} ${type.code}」\n\n${type.oneLiner}\n\n👉 来测测你是哪种人：https://nbti.dofun.fun/`;
     const related = [...window.NBTI_DATA.types]
       .filter((t) => t.code !== type.code)
       .map((t) => {

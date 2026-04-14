@@ -266,9 +266,10 @@ p {
 }
 
 .result-card-hero .hero-cover {
-  width: min(420px, 100%);
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
+  width: min(460px, 100%);
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  background: #f7f6f2;
 }
 
 .breakline-card {
@@ -372,6 +373,13 @@ p {
   border: 1px solid var(--line);
   background: var(--paper);
   padding: 8px 0;
+}
+
+.result-danmu-wall {
+  margin-top: 12px;
+  margin-bottom: 6px;
+  border-style: dashed;
+  background: #fcfcf8;
 }
 
 .danmu-row {
