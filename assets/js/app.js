@@ -944,8 +944,16 @@
       const quote = type.cardHeadline || type.oneLiner;
       return `
       <a class="feed-card" href="/types/${type.slug}/" aria-label="查看 ${type.name} ${type.code}" data-track="type_card_click" data-track-meta="${type.code}">
-        <div class="tag">${type.code}</div>
-        <h3>${type.cardName || type.name}</h3>
+        <div class="feed-head">
+          <div>
+            <div class="tag">${type.code}</div>
+            <h3>${type.cardName || type.name}</h3>
+          </div>
+          <picture class="feed-thumb-wrap">
+            <source srcset="/assets/types/${type.slug}.webp" type="image/webp" />
+            <img class="feed-thumb" src="/assets/types/${type.slug}.png" alt="${type.cardName || type.name} ${type.code}" loading="lazy" />
+          </picture>
+        </div>
         <p class="quote">「${escapeHtml(quote)}」</p>
         <p class="feed-traits">${em[0]} ${escapeHtml(ts[0] || "")} · ${em[1]} ${escapeHtml(ts[1] || "")} · ${em[2]} ${escapeHtml(ts[2] || "")}</p>
         <p class="feed-cta">我有点像 →</p>
@@ -1001,11 +1009,25 @@
           const medal = i === 0 ? "🥇" : i === 1 ? "🥈" : "🥉";
           return `
           <article class="card top-rank-card">
-            <p class="muted">${medal} TOP ${i + 1}</p>
-            <h3>#${i + 1} ${r.type_name} ${r.code}</h3>
-            <p>「${escapeHtml((t && (t.cardHeadline || t.oneLiner)) || "")}」</p>
-            <p class="muted">${em[0]} ${traits[0]} · ${em[1]} ${traits[1]} · ${em[2]} ${traits[2]}</p>
-            <p><strong>当前占比：${r.share.toFixed(1)}%</strong></p>
+            <p class="top-rank-medal muted">${medal} TOP ${i + 1}</p>
+            <h3 class="top-rank-title">#${i + 1} ${r.type_name} ${r.code}</h3>
+            ${
+              t
+                ? `
+            <picture class="top-rank-cover-wrap">
+              <source srcset="/assets/types/${t.slug}.webp" type="image/webp" />
+              <img class="top-rank-cover" src="/assets/types/${t.slug}.png" alt="${r.type_name} ${r.code}" loading="lazy" />
+            </picture>
+            `
+                : ""
+            }
+            <p class="top-rank-quote">「${escapeHtml((t && (t.cardHeadline || t.oneLiner)) || "")}」</p>
+            <div class="top-rank-tags">
+              <span class="mini-tag">${em[0]} ${traits[0]}</span>
+              <span class="mini-tag">${em[1]} ${traits[1]}</span>
+              <span class="mini-tag">${em[2]} ${traits[2]}</span>
+            </div>
+            <p class="top-rank-share"><strong>当前占比：${r.share.toFixed(1)}%</strong></p>
             <button class="btn ghost rank-share-btn" data-code="${r.code}">生成分享卡</button>
           </article>
         `;
