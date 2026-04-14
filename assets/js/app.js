@@ -23,6 +23,41 @@
     return `${isEnSite() ? "/en" : ""}${path}`;
   }
 
+  function hasCJK(text) {
+    return /[\u4e00-\u9fff]/.test(String(text || ""));
+  }
+
+  const EN_TRAITS_BY_CODE = {
+    XOS: ["Idea-rich", "Fast starter", "Novelty-driven"],
+    XOC: ["Steady rhythm", "Consistent output", "Compounds over time"],
+    XSB: ["Pattern observer", "Reads dynamics", "Speaks after scanning"],
+    SOC: ["Starts interactions", "Energizes groups", "Not afraid of silence"],
+    SEA: ["Detects shifts", "Emotion-aware", "Detail-sensitive"],
+    SBC: ["Selective entry", "Clear thresholds", "Assesses before investing"],
+    CEC: ["Reliable execution", "Can close loops", "Low error style"],
+    CBC: ["Structure-first", "Rule-oriented", "Chaos-averse"],
+    BSO: ["Reads the board", "Decodes motives", "Beyond surface"],
+    EAS: ["Strong feelings", "Visible swings", "Expressive flow"],
+    EXS: ["Loops in thought", "Self-recursive", "Gets deeper when stressed"],
+    BXE: ["Defense-first", "Low exposure", "Hard to fully open"],
+    BXC: ["Independent mode", "Low-frequency social", "Self-sufficient"],
+    BCS: ["Value-oriented", "Return-focused", "Avoids waste"],
+    SACE: ["Highly adaptive", "Easy to work with", "Context-compatible"],
+    MXT: ["Multi-mode", "Context switcher", "Many active versions"],
+    XEB: ["Reserved expression", "Complex inside", "Hard to decode"],
+    "EAS+": ["Emotion amplifier", "Easy resonance", "Strongly affected"]
+  };
+
+  function displayTraits(type) {
+    if (isEnSite()) {
+      const preset = EN_TRAITS_BY_CODE[type.code];
+      if (preset) return preset.slice(0, 3);
+    }
+    if (Array.isArray(type.cardTraits) && type.cardTraits.length) return type.cardTraits.slice(0, 3);
+    if (Array.isArray(type.traits) && type.traits.length) return type.traits.slice(0, 3);
+    return isEnSite() ? ["Trait 1", "Trait 2", "Trait 3"] : ["特征1", "特征2", "特征3"];
+  }
+
   function codePath(code) {
     return route(`/result/${encodeURIComponent(code)}/`);
   }
@@ -129,7 +164,7 @@
           const title = `${t.cardName || t.name} ${t.code}`;
           const quote = t.cardHeadline || t.oneLiner || "";
           return `
-            <a class="marquee-card" href="/types/${t.slug}/" data-track="home_type_marquee_click" data-track-meta="${t.code}">
+            <a class="marquee-card" href="${route(`/types/${t.slug}/`)}" data-track="home_type_marquee_click" data-track-meta="${t.code}">
               <picture>
                 <source srcset="/assets/types/${t.slug}.webp" type="image/webp" />
                 <img src="/assets/types/${t.slug}.png" alt="${title}" loading="lazy" />
@@ -145,41 +180,80 @@
 
     const insightRoot = document.getElementById("home-insight-random");
     if (insightRoot) {
-      const pool = [
+      const pool = isEnSite()
+        ? [
+            {
+              q: "Why do I overthink everything?",
+              d: "The event is over, but your mind keeps replaying details in loops...",
+              href: route("/insights/why-do-i-overthink-everything/"),
+              meta: "overthink"
+            },
+            {
+              q: "Why do I start fast but fail to finish?",
+              d: "You launch with energy, then lose traction once it becomes repetitive...",
+              href: route("/insights/why-do-i-start-things-but-dont-finish/"),
+              meta: "start_finish"
+            },
+            {
+              q: "Why do I feel like different versions of myself?",
+              d: "You shift by context. It's not fake, it's adaptive patterning...",
+              href: route("/insights/why-do-i-feel-like-different-versions-of-myself/"),
+              meta: "multi_version"
+            },
+            {
+              q: "Why can I chat well but rarely initiate?",
+              d: "You are not bad at socializing. Initiation simply costs more energy...",
+              href: route("/types/xsb/"),
+              meta: "xsb"
+            },
+            {
+              q: "Why do I always think there is a better way?",
+              d: "While doing A, your attention starts evaluating B and C in parallel...",
+              href: route("/types/xos/"),
+              meta: "xos"
+            },
+            {
+              q: "Why do I struggle with boundaries in relationships?",
+              d: "You want to decline, but also want to avoid friction, then regret it later...",
+              href: route("/types/sbc/"),
+              meta: "sbc"
+            }
+          ]
+        : [
         {
           q: "为什么我总在想太多？",
           d: "明明事情已经过去了，脑子却还在复盘细节，一层一层停不下来……",
-          href: "/insights/why-do-i-overthink-everything/",
+          href: route("/insights/why-do-i-overthink-everything/"),
           meta: "overthink"
         },
         {
           q: "为什么我总是开头猛，后面断？",
           d: "刚开始的时候冲得很快，但一进入重复阶段就掉速，最后卡在半路……",
-          href: "/insights/why-do-i-start-things-but-dont-finish/",
+          href: route("/insights/why-do-i-start-things-but-dont-finish/"),
           meta: "start_finish"
         },
         {
           q: "为什么我像有好几个版本？",
           d: "在不同场景里像不同的人，这不是装，而是你在自动适配环境……",
-          href: "/insights/why-do-i-feel-like-different-versions-of-myself/",
+          href: route("/insights/why-do-i-feel-like-different-versions-of-myself/"),
           meta: "multi_version"
         },
         {
           q: "为什么我能聊，但不想主动聊？",
           d: "不是不会社交，而是主动启动社交这件事对你来说成本很高……",
-          href: "/types/xsb/",
+          href: route("/types/xsb/"),
           meta: "xsb"
         },
         {
           q: "为什么我总觉得还有更好的做法？",
           d: "手上在做 A，脑子已经在评估 B 和 C，注意力一直被新可能拉走……",
-          href: "/types/xos/",
+          href: route("/types/xos/"),
           meta: "xos"
         },
         {
           q: "为什么我总在关系里拉扯边界？",
           d: "想拒绝又怕关系变僵，最后先答应，事后再后悔……",
-          href: "/types/sbc/",
+          href: route("/types/sbc/"),
           meta: "sbc"
         }
       ];
@@ -198,7 +272,30 @@
 
     const danmuRoot = document.getElementById("home-danmu-wall");
     if (danmuRoot && !danmuRoot.querySelector(".danmu-row")) {
-      const comments = [
+      const comments = isEnSite()
+        ? [
+            "This is exactly me???",
+            "I feel seen.",
+            "Regret clicking this.",
+            "Too real to ignore.",
+            "Every question hit.",
+            "How is this so accurate?",
+            "It even caught my friction points.",
+            "My friend got called out too.",
+            "This explains my daily pattern.",
+            "Now I want to share this.",
+            "Even my relationship pattern was called out.",
+            "This knows me better than me.",
+            "I am not lazy, I really get stuck.",
+            "I am definitely a starter chaos person.",
+            "I thought I was the only one.",
+            "Wild but true.",
+            "Took it immediately.",
+            "Stress pattern is spot on.",
+            "Sent this to my friends.",
+            "This is my daily life."
+          ]
+        : [
         "这不就是我？？？",
         "我被看透了",
         "后悔点进来",
@@ -233,13 +330,13 @@
       <article class="type-item">
         <picture>
           <source srcset="/assets/types/${type.slug}.webp" type="image/webp" />
-          <img class="type-cover" src="/assets/types/${type.slug}.png" alt="${type.name} ${type.code} 插图" loading="lazy" />
+          <img class="type-cover" src="/assets/types/${type.slug}.png" alt="${type.name} ${type.code} ${t("插图", "illustration")}" loading="lazy" />
         </picture>
         <div class="tag">${type.code}</div>
         <h3>${type.name}</h3>
         <p>${type.oneLiner}</p>
-        <p class="muted">${type.traits.join(" · ")}</p>
-        <a class="btn ghost" href="/types/${type.slug}/">查看类型</a>
+        <p class="muted">${displayTraits(type).join(" · ")}</p>
+        <a class="btn ghost" href="${route(`/types/${type.slug}/`)}">${t("查看类型", "View Type")}</a>
       </article>
     `;
   }
@@ -285,11 +382,7 @@
       type_name: type.cardName || type.name,
       code: type.code,
       headline: type.cardHeadline || type.oneLiner || "",
-      traits: Array.isArray(type.cardTraits)
-        ? type.cardTraits.slice(0, 3)
-        : Array.isArray(type.traits)
-          ? type.traits.slice(0, 3)
-          : [],
+      traits: displayTraits(type),
       emoji: CARD_EMOJI_MAP[type.code] || ["✨", "🧩", "⚡"],
       danmu: Array.isArray(type.danmu) ? type.danmu.slice(0, 4) : []
     };
@@ -339,7 +432,7 @@
 
     ctx.fillStyle = "#111111";
     ctx.font = "700 40px Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif";
-    ctx.fillText(`NBTI 结果票据 #${payload.code}`, pad, 104);
+    ctx.fillText(`${isEnSite() ? "NBTI Result Ticket" : "NBTI 结果票据"} #${payload.code}`, pad, 104);
 
     ctx.font = "800 86px Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif";
     ctx.fillText(payload.type_name, pad, 218);
@@ -369,8 +462,8 @@
       ty += 66;
     });
 
-    const danmuSeed = payload.danmu && payload.danmu.length ? payload.danmu : ["这不就是我？？？", "太真实了", "我被看透了", "后悔点进来"];
-    const danmuText = `弹幕：${danmuSeed.join("  ·  ")}`;
+    const danmuSeed = payload.danmu && payload.danmu.length ? payload.danmu : isEnSite() ? ["This is me???", "Too real", "I feel seen", "Regret clicking"] : ["这不就是我？？？", "太真实了", "我被看透了", "后悔点进来"];
+    const danmuText = `${isEnSite() ? "Comments" : "弹幕"}：${danmuSeed.join("  ·  ")}`;
     ctx.font = "500 30px Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif";
     ctx.fillStyle = "#333333";
     const danmuLines = wrapLines(ctx, danmuText, contentW - 8, 2);
@@ -390,13 +483,13 @@
     ctx.strokeRect(qrX, qrY, qrSize, qrSize);
     ctx.font = "500 24px Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif";
     ctx.fillStyle = "#555555";
-    ctx.fillText("扫码访问", qrX + 54, qrY + qrSize + 12);
+    ctx.fillText(isEnSite() ? "Scan to visit" : "扫码访问", qrX + 54, qrY + qrSize + 12);
 
     ctx.font = "600 30px Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif";
     ctx.fillStyle = "#111111";
     ctx.fillText("https://nbti.dofun.fun/", pad, h - 214);
     ctx.font = "600 34px Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif";
-    ctx.fillText("—— 测测你是哪种人", pad, h - 162);
+    ctx.fillText(isEnSite() ? "— Take the test and find your type" : "—— 测测你是哪种人", pad, h - 162);
   }
 
   function drawTemplatePatch(ctx, payload, w, h) {
@@ -411,10 +504,10 @@
     ctx.fillText(`${payload.type_name} ${payload.code}`, pad, 120);
 
     ctx.font = "700 54px Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif";
-    const l1 = wrapLines(ctx, "你最容易卡住的不是开始", contentW, 1);
-    const l2 = wrapLines(ctx, "是持续", contentW, 1);
-    const l3 = wrapLines(ctx, "你不是做不到", contentW, 1);
-    const l4 = wrapLines(ctx, "是会被新的东西带走", contentW, 1);
+    const l1 = wrapLines(ctx, isEnSite() ? "Your biggest friction is not starting" : "你最容易卡住的不是开始", contentW, 1);
+    const l2 = wrapLines(ctx, isEnSite() ? "it is sustaining" : "是持续", contentW, 1);
+    const l3 = wrapLines(ctx, isEnSite() ? "You are not incapable" : "你不是做不到", contentW, 1);
+    const l4 = wrapLines(ctx, isEnSite() ? "you get interrupted by new options" : "是会被新的东西带走", contentW, 1);
     ctx.fillText(l1[0], pad, 360);
     ctx.fillText(l2[0], pad, 440);
     ctx.fillText(l3[0], pad, 600);
@@ -432,7 +525,7 @@
     ctx.textBaseline = "top";
 
     ctx.font = "800 72px Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif";
-    ctx.fillText(`${payload.type_name}常见发言：`, pad, 130);
+    ctx.fillText(isEnSite() ? `${payload.type_name} common lines:` : `${payload.type_name}常见发言：`, pad, 130);
 
     ctx.font = "600 48px Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif";
     let y = 320;
@@ -638,14 +731,25 @@
       <section class="section">
         <h2>${t("一句话破防总结", "One-line Core Hit")}</h2>
         <article class="card breakline-card">
-          <p class="lead">${escapeHtml(type.breakLine || type.oneLiner)}</p>
+          <p class="lead">${escapeHtml(isEnSite() && hasCJK(type.breakLine) ? type.oneLiner : type.breakLine || type.oneLiner)}</p>
         </article>
       </section>
       <section class="section">
         <h2>${t("你的真实状态", "Your Real Pattern")}</h2>
         <article class="card">
           <ul class="bullet-list">
-            ${(type.realState || []).map((x) => `<li>${escapeHtml(x)}</li>`).join("")}
+            ${
+              (isEnSite() && (type.realState || []).some(hasCJK)
+                ? [
+                    "You may run multiple tracks in parallel instead of one strict line.",
+                    "Your current plan can be interrupted by newer options.",
+                    "You usually have momentum at the start, then need structure to sustain."
+                  ]
+                : type.realState || []
+              )
+                .map((x) => `<li>${escapeHtml(x)}</li>`)
+                .join("")
+            }
           </ul>
         </article>
       </section>
@@ -728,17 +832,15 @@
     const slug = root.getAttribute("data-slug");
     const type = bySlug(slug);
     if (!type) {
-      root.innerHTML = "<p>类型不存在。</p>";
+      root.innerHTML = `<p>${t("类型不存在。", "Type not found.")}</p>`;
       return;
     }
 
     const em = CARD_EMOJI_MAP[type.code] || ["✨", "🧩", "⚡"];
-    const traits = Array.isArray(type.cardTraits)
-      ? type.cardTraits.slice(0, 3)
-      : Array.isArray(type.traits)
-        ? type.traits.slice(0, 3)
-        : ["特征1", "特征2", "特征3"];
-    const shareText = `我是「${type.name} ${type.code}」\n\n${type.oneLiner}\n\n👉 来测测你是哪种人：https://nbti.dofun.fun/`;
+    const traits = displayTraits(type);
+    const shareText = isEnSite()
+      ? `I'm "${type.name} ${type.code}"\n\n${type.oneLiner}\n\nTake NBTI and find your pattern:\nhttps://nbti.dofun.fun/en/`
+      : `我是「${type.name} ${type.code}」\n\n${type.oneLiner}\n\n👉 来测测你是哪种人：https://nbti.dofun.fun/`;
     const related = [...window.NBTI_DATA.types]
       .filter((t) => t.code !== type.code)
       .map((t) => {
@@ -751,10 +853,15 @@
       .sort((a, b) => a.distance - b.distance)
       .slice(0, 3)
       .map((x) => x.type);
-    document.title = `${type.cardName || type.name} ${type.code} - NBTI 类型详情`;
+    document.title = `${type.cardName || type.name} ${type.code} - ${t("NBTI 类型详情", "NBTI Type Detail")}`;
     const desc = document.querySelector('meta[name="description"]');
     if (desc) {
-      desc.setAttribute("content", `${type.cardName || type.name}（${type.code}）类型详情：你为什么会这样、容易卡在哪、怎么调整更顺。`);
+      desc.setAttribute(
+        "content",
+        isEnSite()
+          ? `${type.cardName || type.name} (${type.code}) type detail: why you operate this way, where you get stuck, and how to adjust.`
+          : `${type.cardName || type.name}（${type.code}）类型详情：你为什么会这样、容易卡在哪、怎么调整更顺。`
+      );
     }
 
     root.innerHTML = `
@@ -762,7 +869,7 @@
         <article class="card type-hero-image">
           <picture>
             <source srcset="/assets/types/${type.slug}.webp" type="image/webp" />
-            <img class="hero-cover" src="/assets/types/${type.slug}.png" alt="${type.name} ${type.code} 插图" />
+            <img class="hero-cover" src="/assets/types/${type.slug}.png" alt="${type.name} ${type.code} ${t("插图", "illustration")}" />
           </picture>
         </article>
         <article class="card type-hero-copy">
@@ -773,63 +880,74 @@
         </article>
       </section>
       <section class="section">
-        <h2>一句话破防</h2>
+        <h2>${t("一句话破防", "One-line Core Hit")}</h2>
         <article class="card breakline-card">
-          <p class="lead">${escapeHtml(type.breakLine || type.oneLiner)}</p>
+          <p class="lead">${escapeHtml(isEnSite() && hasCJK(type.breakLine) ? type.oneLiner : type.breakLine || type.oneLiner)}</p>
         </article>
       </section>
       <section class="section">
-        <h2>核心人格机制</h2>
+        <h2>${t("核心人格机制", "Core Mechanism")}</h2>
         <article class="card">
           <p>${withBreaks(type.mechanism)}</p>
         </article>
       </section>
       <section class="section">
-        <h2>你的真实状态</h2>
+        <h2>${t("你的真实状态", "Your Real Pattern")}</h2>
         <article class="card">
           <ul class="bullet-list">
-            ${(type.realState || []).map((x) => `<li>${escapeHtml(x)}</li>`).join("")}
+            ${
+              (isEnSite() && (type.realState || []).some(hasCJK)
+                ? [
+                    `You usually start from an interesting angle before deciding the strict path.`,
+                    `Your focus can be pulled by newer options even while current tasks are active.`,
+                    `You are often switching between parallel tracks instead of running one line only.`
+                  ]
+                : type.realState || []
+              )
+                .map((x) => `<li>${escapeHtml(x)}</li>`)
+                .join("")
+            }
           </ul>
         </article>
       </section>
       <section class="section">
-        <h2>你的优势</h2>
+        <h2>${t("你的优势", "Your Strengths")}</h2>
         <article class="card">
           <p>${withBreaks(type.strengths)}</p>
         </article>
       </section>
       <section class="section">
-        <h2>你的 Bug</h2>
+        <h2>${t("你的 Bug", "Your Bug")}</h2>
         <article class="card">
           <p>${withBreaks(type.hiddenBug)}</p>
         </article>
       </section>
       <section class="section">
-        <h2>关系模式</h2>
+        <h2>${t("关系模式", "Relationship Pattern")}</h2>
         <article class="card">
           <p>${withBreaks(type.relationMode)}</p>
         </article>
       </section>
       <section class="section">
-        <h2>职场 / 创作模式</h2>
+        <h2>${t("职场 / 创作模式", "Work / Creative Mode")}</h2>
         <article class="card">
           <p>${withBreaks(type.workMode)}</p>
         </article>
       </section>
       <section class="section">
-        <h2>压力状态</h2>
+        <h2>${t("压力状态", "Stress Mode")}</h2>
         <article class="card">
           <p>${withBreaks(type.stressMode)}</p>
         </article>
       </section>
       <section class="section">
-        <h2>成长建议</h2>
+        <h2>${t("成长建议", "Growth Advice")}</h2>
         <article class="card">
           <p>${withBreaks(type.growth)}</p>
         </article>
       </section>
       <section class="section">
-        <h2>NBTI翻译成人话</h2>
+        <h2>${t("NBTI翻译成人话", "NBTI in Plain Words")}</h2>
         <article class="card">
           <p class="lead">${escapeHtml(type.humanTranslation || type.oneLiner)}</p>
         </article>
@@ -838,24 +956,24 @@
         type.danmu && type.danmu.length
           ? `
       <section class="section">
-        <h2>这个类型常见弹幕</h2>
+        <h2>${t("这个类型常见弹幕", "Common Reactions for This Type")}</h2>
         <div class="card">${type.danmu.map((line) => `<p>“${line}”</p>`).join("")}</div>
       </section>
       `
           : ""
       }
       <section class="section">
-        <h2>相关性感</h2>
+        <h2>${t("相关性感", "Related Similarity")}</h2>
         <div class="grid related-grid">
           ${related
             .map((r) => {
               const re = CARD_EMOJI_MAP[r.code] || ["✨", "🧩", "⚡"];
-              const rt = Array.isArray(r.cardTraits) ? r.cardTraits.slice(0, 3) : (r.traits || []).slice(0, 3);
+              const rt = displayTraits(r);
               return `
-                <a class="card related-card" href="/types/${r.slug}/" data-track="type_related_click" data-track-meta="${type.code}->${r.code}">
+                <a class="card related-card" href="${route(`/types/${r.slug}/`)}" data-track="type_related_click" data-track-meta="${type.code}->${r.code}">
                   <picture>
                     <source srcset="/assets/types/${r.slug}.webp" type="image/webp" />
-                    <img class="type-cover" src="/assets/types/${r.slug}.png" alt="${r.name} ${r.code} 插图" loading="lazy" />
+                    <img class="type-cover" src="/assets/types/${r.slug}.png" alt="${r.name} ${r.code} ${t("插图", "illustration")}" loading="lazy" />
                   </picture>
                   <h3>${r.cardName || r.name}</h3>
                   <p>${escapeHtml(r.cardHeadline || r.oneLiner)}</p>
@@ -867,16 +985,16 @@
         </div>
       </section>
       <section class="section">
-        <h2>分享引导</h2>
+        <h2>${t("分享引导", "Share Prompt")}</h2>
         <article class="card">
-          <p>${escapeHtml(type.commentPrompt || "你是这种人吗？还是更像另一个版本的自己？")}</p>
-          <p class="muted">你可以生成专属人格卡，再发给朋友看看他们是哪种。</p>
+          <p>${escapeHtml(type.commentPrompt || t("你是这种人吗？还是更像另一个版本的自己？", "Does this type feel like you, or are you closer to another mode?"))}</p>
+          <p class="muted">${t("你可以生成专属人格卡，再发给朋友看看他们是哪种。", "Generate your card and send it to friends.")}</p>
         </article>
         <div class="cta-row">
-          <button class="btn" id="typeSaveResultCardBtn">👉 生成我的人格卡</button>
-          <button class="btn secondary" id="typeSaveDanmuCardBtn">👉 生成弹幕卡</button>
-          <button class="btn ghost" id="typeCopyShareBtn">👉 发给朋友看看他们是哪种</button>
-          <a class="btn ghost" href="/test/">👉 去测试看看我的类型</a>
+          <button class="btn" id="typeSaveResultCardBtn">${t("👉 生成我的人格卡", "👉 Generate My Card")}</button>
+          <button class="btn secondary" id="typeSaveDanmuCardBtn">${t("👉 生成弹幕卡", "👉 Generate Danmu Card")}</button>
+          <button class="btn ghost" id="typeCopyShareBtn">${t("👉 发给朋友看看他们是哪种", "👉 Share with Friends")}</button>
+          <a class="btn ghost" href="${route("/test/")}">${t("👉 去测试看看我的类型", "👉 Take the Test")}</a>
         </div>
       </section>
     `;
@@ -888,7 +1006,7 @@
     async function saveCard(btn, template, suffix) {
       btn.disabled = true;
       const oldText = btn.textContent;
-      btn.textContent = "生成中...";
+      btn.textContent = t("生成中...", "Generating...");
       try {
         const blob = await drawShareCard(type, template);
         if (!blob) throw new Error("blob");
@@ -901,9 +1019,9 @@
         a.remove();
         URL.revokeObjectURL(url);
         trackEvent("card_download", { source: "type_detail", template, code: type.code });
-        btn.textContent = "已保存";
+        btn.textContent = t("已保存", "Saved");
       } catch (e) {
-        btn.textContent = "保存失败";
+        btn.textContent = t("保存失败", "Save failed");
       } finally {
         setTimeout(() => {
           btn.disabled = false;
@@ -918,12 +1036,12 @@
       try {
         await navigator.clipboard.writeText(shareText);
         trackEvent("share_copy", { source: "type_detail", code: type.code });
-        copyBtn.textContent = "已复制";
+        copyBtn.textContent = t("已复制", "Copied");
         setTimeout(() => {
-          copyBtn.textContent = "👉 发给朋友看看他们是哪种";
+          copyBtn.textContent = t("👉 发给朋友看看他们是哪种", "👉 Share with Friends");
         }, 1200);
       } catch (e) {
-        copyBtn.textContent = "复制失败";
+        copyBtn.textContent = t("复制失败", "Copy failed");
       }
     });
   }
@@ -972,7 +1090,7 @@
       const ts = Array.isArray(type.cardTraits) ? type.cardTraits.slice(0, 3) : type.traits.slice(0, 3);
       const quote = type.cardHeadline || type.oneLiner;
       return `
-      <a class="feed-card" href="/types/${type.slug}/" aria-label="查看 ${type.name} ${type.code}" data-track="type_card_click" data-track-meta="${type.code}">
+      <a class="feed-card" href="${route(`/types/${type.slug}/`)}" aria-label="${t(`查看 ${type.name} ${type.code}`, `View ${type.name} ${type.code}`)}" data-track="type_card_click" data-track-meta="${type.code}">
         <div class="feed-head">
           <div>
             <div class="tag">${type.code}</div>
@@ -985,7 +1103,7 @@
         </div>
         <p class="quote">「${escapeHtml(quote)}」</p>
         <p class="feed-traits">${em[0]} ${escapeHtml(ts[0] || "")} · ${em[1]} ${escapeHtml(ts[1] || "")} · ${em[2]} ${escapeHtml(ts[2] || "")}</p>
-        <p class="feed-cta">我有点像 →</p>
+        <p class="feed-cta">${t("我有点像 →", "This feels like me →")}</p>
       </a>
       `;
     }
@@ -1015,11 +1133,11 @@
 
     const rd = window.NBTI_DATA.rankingsData;
     if (!rd || !rd.rankings || !rd.rankings.all_time) {
-      root.innerHTML = "<article class='card'>排行榜数据暂未准备好。</article>";
+      root.innerHTML = `<article class='card'>${t("排行榜数据暂未准备好。", "Ranking data is not ready yet.")}</article>`;
       return;
     }
 
-    const fmtNum = (n) => Number(n || 0).toLocaleString("zh-CN");
+    const fmtNum = (n) => Number(n || 0).toLocaleString(isEnSite() ? "en-US" : "zh-CN");
     const trendClass = (t) =>
       String(t || "").includes("↑") ? "up" : String(t || "").includes("↓") ? "down" : String(t || "") === "NEW" ? "new" : "flat";
 
@@ -1034,7 +1152,7 @@
         .map((r, i) => {
           const t = byCode(r.code);
           const em = CARD_EMOJI_MAP[r.code] || ["✨", "🧩", "⚡"];
-          const traits = t && Array.isArray(t.cardTraits) ? t.cardTraits.slice(0, 3) : ["特征1", "特征2", "特征3"];
+          const traits = t ? displayTraits(t) : (isEnSite() ? ["Trait 1", "Trait 2", "Trait 3"] : ["特征1", "特征2", "特征3"]);
           const medal = i === 0 ? "🥇" : i === 1 ? "🥈" : "🥉";
           return `
           <article class="card top-rank-card">
@@ -1056,8 +1174,8 @@
               <span class="mini-tag">${em[1]} ${traits[1]}</span>
               <span class="mini-tag">${em[2]} ${traits[2]}</span>
             </div>
-            <p class="top-rank-share"><strong>当前占比：${r.share.toFixed(1)}%</strong></p>
-            <button class="btn ghost rank-share-btn" data-code="${r.code}">生成分享卡</button>
+            <p class="top-rank-share"><strong>${t("当前占比：", "Current Share: ")}${r.share.toFixed(1)}%</strong></p>
+            <button class="btn ghost rank-share-btn" data-code="${r.code}">${t("生成分享卡", "Generate Share Card")}</button>
           </article>
         `;
         })
@@ -1082,76 +1200,76 @@
 
       root.innerHTML = `
         <section class="section">
-          <p class="muted">这个榜单，来自所有完成测试的结果</p>
+          <p class="muted">${t("这个榜单，来自所有完成测试的结果", "This board reflects all completed tests.")}</p>
           <div class="stats-grid">
-            <article class="card"><p class="muted">总提交数</p><h3>${fmtNum(rd.summary.total_submissions)}</h3></article>
-            <article class="card"><p class="muted">已上榜人格</p><h3>${rd.summary.types_on_board} / ${rd.summary.types_total}</h3></article>
-            <article class="card"><p class="muted">最近更新</p><h3>${rd.summary.last_updated_label || "3分钟前"}</h3></article>
-            <article class="card"><p class="muted">今日新增</p><h3>${fmtNum(rd.summary.today_new)}</h3></article>
+            <article class="card"><p class="muted">${t("总提交数", "Total Submissions")}</p><h3>${fmtNum(rd.summary.total_submissions)}</h3></article>
+            <article class="card"><p class="muted">${t("已上榜人格", "Types On Board")}</p><h3>${rd.summary.types_on_board} / ${rd.summary.types_total}</h3></article>
+            <article class="card"><p class="muted">${t("最近更新", "Last Updated")}</p><h3>${isEnSite() ? "3 mins ago" : rd.summary.last_updated_label || "3分钟前"}</h3></article>
+            <article class="card"><p class="muted">${t("今日新增", "Today New")}</p><h3>${fmtNum(rd.summary.today_new)}</h3></article>
           </div>
         </section>
 
         <section class="section">
-          <h2>TOP3 人格卡</h2>
+          <h2>${t("TOP3 人格卡", "TOP3 Type Cards")}</h2>
           <div class="grid">${topCards}</div>
         </section>
 
         <section class="section">
           <div class="rank-head">
-            <h2>排行榜主榜</h2>
+            <h2>${t("排行榜主榜", "Main Ranking")}</h2>
             <div class="filter-row">
-              <button class="chip ${mode === "all_time" ? "active" : ""}" data-rmode="all_time" data-track="rankings_mode_switch" data-track-meta="all_time">全部时间</button>
-              <button class="chip ${mode === "seven_day" ? "active" : ""}" data-rmode="seven_day" data-track="rankings_mode_switch" data-track-meta="seven_day">最近7天</button>
-              <button class="chip ${mode === "today" ? "active" : ""}" data-rmode="today" data-track="rankings_mode_switch" data-track-meta="today">今天</button>
+              <button class="chip ${mode === "all_time" ? "active" : ""}" data-rmode="all_time" data-track="rankings_mode_switch" data-track-meta="all_time">${t("全部时间", "All Time")}</button>
+              <button class="chip ${mode === "seven_day" ? "active" : ""}" data-rmode="seven_day" data-track="rankings_mode_switch" data-track-meta="seven_day">${t("最近7天", "Last 7 Days")}</button>
+              <button class="chip ${mode === "today" ? "active" : ""}" data-rmode="today" data-track="rankings_mode_switch" data-track-meta="today">${t("今天", "Today")}</button>
             </div>
           </div>
-          <p class="muted trend-legend"><span class="trend up">↑ 上升</span> · <span class="trend down">↓ 下降</span> · <span class="trend flat">— 持平</span> · <span class="trend new">NEW 新上榜</span></p>
+          <p class="muted trend-legend"><span class="trend up">↑ ${t("上升", "Up")}</span> · <span class="trend down">↓ ${t("下降", "Down")}</span> · <span class="trend flat">— ${t("持平", "Flat")}</span> · <span class="trend new">NEW ${t("新上榜", "New")}</span></p>
           <div class="card rank-table-wrap">
             <table class="rank-table">
-              <thead><tr><th>排名</th><th>人格</th><th>代码</th><th>提交量</th><th>占比</th><th>趋势</th></tr></thead>
+              <thead><tr><th>${t("排名", "Rank")}</th><th>${t("人格", "Type")}</th><th>${t("代码", "Code")}</th><th>${t("提交量", "Count")}</th><th>${t("占比", "Share")}</th><th>${t("趋势", "Trend")}</th></tr></thead>
               <tbody>${tableRows}</tbody>
             </table>
           </div>
         </section>
 
         <section class="section">
-          <h2>这批人，整体更像这样</h2>
+          <h2>${t("这批人，整体更像这样", "This cohort trends like this")}</h2>
           <article class="card">
-            <p>最容易对号入座的：脑洞玩家 / 内耗大师 / 情绪雷达</p>
-            <p>最少见的：稳定输出机 / 情绪共振体 / 现实派</p>
-            <p>最近涨得最快：${fast.type_name} ${fast.trend}</p>
-            <p>最容易测混的两种：脑洞玩家 ↔ 多版本玩家；内耗大师 ↔ 情绪雷达</p>
+            <p>${t("最容易对号入座的：脑洞玩家 / 内耗大师 / 情绪雷达", "Most relatable: Explorer / Overthinker / Emotion Radar")}</p>
+            <p>${t("最少见的：稳定输出机 / 情绪共振体 / 现实派", "Rarest: Steady Producer / Resonance Amplifier / Realist")}</p>
+            <p>${t("最近涨得最快：", "Fastest rising: ")}${fast.type_name} ${fast.trend}</p>
+            <p>${t("最容易测混的两种：脑洞玩家 ↔ 多版本玩家；内耗大师 ↔ 情绪雷达", "Most confused pairs: Explorer ↔ Multi-Version; Overthinker ↔ Emotion Radar")}</p>
           </article>
         </section>
 
         <section class="section">
-          <h2>整体状态分布（7维平均）</h2>
+          <h2>${t("整体状态分布（7维平均）", "Overall Pattern Distribution (7 dimensions)")}</h2>
           <article class="card">
-            <p>探索倾向：偏高</p>
-            <p>情绪敏感：中高</p>
-            <p>执行稳定：中等偏低</p>
-            <p>社交驱动：分化明显</p>
-            <p>边界感：两极分布</p>
-            <p>表达驱动：波动较大</p>
-            <p>自我稳定：整体不稳定</p>
+            <p>${t("探索倾向：偏高", "Exploration: high")}</p>
+            <p>${t("情绪敏感：中高", "Emotional sensitivity: mid-high")}</p>
+            <p>${t("执行稳定：中等偏低", "Execution stability: mid-low")}</p>
+            <p>${t("社交驱动：分化明显", "Social drive: polarized")}</p>
+            <p>${t("边界感：两极分布", "Boundary setting: bimodal")}</p>
+            <p>${t("表达驱动：波动较大", "Expression drive: fluctuating")}</p>
+            <p>${t("自我稳定：整体不稳定", "Self-stability: overall unstable")}</p>
           </article>
         </section>
 
         <section class="section">
-          <h2>榜单说明</h2>
+          <h2>${t("榜单说明", "Board Notes")}</h2>
           <details class="card">
-            <summary>榜单说明</summary>
-            <p>这个榜单，来自所有完成测试的结果。</p>
-            <p>它反映的是当前这批人的状态分布，不是标准答案。</p>
-            <p>每次刷新，这张榜都会变一点。</p>
+            <summary>${t("榜单说明", "Board Notes")}</summary>
+            <p>${t("这个榜单，来自所有完成测试的结果。", "This board is built from all completed tests.")}</p>
+            <p>${t("它反映的是当前这批人的状态分布，不是标准答案。", "It reflects this cohort distribution, not a universal standard.")}</p>
+            <p>${t("每次刷新，这张榜都会变一点。", "Each refresh may change the board slightly.")}</p>
           </details>
-          <p class="muted">这是当前这批人的真实分布，不是标准答案。</p>
+          <p class="muted">${t("这是当前这批人的真实分布，不是标准答案。", "This is a cohort snapshot, not a final truth.")}</p>
         </section>
 
         <section class="section">
-          <h2>你在榜上哪一类？</h2>
-          <p>测完再看这张榜，会更像在看自己。</p>
-          <div class="cta-row"><a class="btn" href="/test/" data-track="rankings_cta_click" data-track-meta="bottom">👉 我也去测一下</a></div>
+          <h2>${t("你在榜上哪一类？", "Where are you on this board?")}</h2>
+          <p>${t("测完再看这张榜，会更像在看自己。", "Take the test, then come back to read yourself in context.")}</p>
+          <div class="cta-row"><a class="btn" href="${route("/test/")}" data-track="rankings_cta_click" data-track-meta="bottom">${t("👉 我也去测一下", "👉 Take the Test")}</a></div>
         </section>
       `;
 
@@ -1167,7 +1285,7 @@
           const slug = row.getAttribute("data-slug");
           if (slug) {
             trackEvent("rankings_row_click", { slug });
-            window.location.href = `/types/${slug}/`;
+            window.location.href = route(`/types/${slug}/`);
           }
         });
       });
@@ -1179,7 +1297,7 @@
           const type = byCode(code || "");
           if (!type) return;
           const oldText = btn.textContent;
-          btn.textContent = "生成中...";
+          btn.textContent = t("生成中...", "Generating...");
           btn.setAttribute("disabled", "disabled");
           try {
             const blob = await drawShareCard(type, "result");
@@ -1193,9 +1311,9 @@
             a.remove();
             URL.revokeObjectURL(url);
             trackEvent("card_download", { template: "result", source: "rankings_top", code: type.code });
-            btn.textContent = "已保存";
+            btn.textContent = t("已保存", "Saved");
           } catch (err) {
-            btn.textContent = "保存失败";
+            btn.textContent = t("保存失败", "Save failed");
           } finally {
             setTimeout(() => {
               btn.textContent = oldText;
@@ -1212,17 +1330,23 @@
   function renderFaqPage() {
     const root = document.getElementById("faq-app");
     if (!root) return;
-    const groups = [
-      { key: "测试问题", id: "faq-test" },
-      { key: "结果问题", id: "faq-result" },
-      { key: "排行榜问题", id: "faq-rank" }
-    ];
+    const groups = isEnSite()
+      ? [
+          { key: "Test", id: "faq-test", title: "Test" },
+          { key: "Results", id: "faq-result", title: "Results" },
+          { key: "Rankings", id: "faq-rank", title: "Rankings" }
+        ]
+      : [
+          { key: "测试问题", id: "faq-test", title: "测试问题" },
+          { key: "结果问题", id: "faq-result", title: "结果问题" },
+          { key: "排行榜问题", id: "faq-rank", title: "排行榜问题" }
+        ];
     root.innerHTML = groups
       .map((g) => {
-        const list = (window.NBTI_DATA.faq || []).filter((x) => (x.cat || "测试问题") === g.key);
+        const list = (window.NBTI_DATA.faq || []).filter((x) => (x.cat || groups[0].key) === g.key);
         return `
           <section id="${g.id}" class="section">
-            <h2>${g.key}</h2>
+            <h2>${g.title}</h2>
             ${list.map((item) => `<article class="card"><h3>${item.q}</h3><p>${item.a}</p></article>`).join('<div style="height:10px"></div>')}
           </section>
         `;

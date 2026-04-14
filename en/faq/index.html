@@ -4,11 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NBTI FAQ</title>
-    <meta name="description" content="Frequently asked questions about NBTI testing, result interpretation, and ranking data." />
+    <meta name="description" content="Frequently asked questions about NBTI test flow, results, and rankings." />
     <link rel="canonical" href="https://nbti.dofun.fun/en/faq/" />
     <link rel="alternate" hreflang="zh-CN" href="https://nbti.dofun.fun/faq/" />
     <link rel="alternate" hreflang="en" href="https://nbti.dofun.fun/en/faq/" />
+    <link rel="alternate" hreflang="x-default" href="https://nbti.dofun.fun/" />
     <link rel="stylesheet" href="/assets/css/style.css?v=20260414-11" />
+    <script src="/assets/js/data-en.js?v=20260414-11" defer></script>
     <script src="/assets/js/app.js?v=20260414-11" defer></script>
   </head>
   <body>
@@ -26,21 +28,27 @@
       </header>
       <section class="hero">
         <h1>FAQ</h1>
+        <p class="lead">Questions people ask most, in one place.</p>
+        <p class="muted">Categories: Test / Results / Rankings</p>
       </section>
       <section class="section">
-        <article class="card">
-          <h3>Is NBTI the same as MBTI?</h3>
-          <p>No. NBTI is a behavior-focused, content-first system inspired by real operating patterns.</p>
-          <h3>Is NBTI a clinical diagnosis?</h3>
-          <p>No. It is for self-observation, communication, and practical reflection.</p>
-          <h3>Why does the ranking move?</h3>
-          <p>Rankings reflect current sample distribution and can shift as new test sessions complete.</p>
-        </article>
+        <div class="filter-row">
+          <a class="chip" href="#faq-test">Test</a>
+          <a class="chip" href="#faq-result">Results</a>
+          <a class="chip" href="#faq-rank">Rankings</a>
+        </div>
+      </section>
+      <section id="faq-app" class="section"></section>
+      <section class="section">
+        <h2>Haven't taken the test yet?</h2>
+        <div class="cta-row">
+          <a class="btn" href="/en/test/" data-track="faq_cta_click" data-track-meta="bottom">👉 Start Test</a>
+        </div>
       </section>
       <footer class="footer">
         <p>NBTI V2.0 · Static Edition · <span data-year></span></p>
+        <p><a href="/en/privacy/">Privacy</a> · <a href="/en/faq/">FAQ</a> · <a href="/en/test/">Start Test</a></p>
       </footer>
     </main>
   </body>
 </html>
-

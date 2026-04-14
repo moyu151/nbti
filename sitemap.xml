@@ -1,15 +1,54 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://nbti.dofun.fun/</loc></url>
   <url><loc>https://nbti.dofun.fun/about/</loc></url>
   <url><loc>https://nbti.dofun.fun/en/</loc></url>
   <url><loc>https://nbti.dofun.fun/en/about/</loc></url>
   <url><loc>https://nbti.dofun.fun/en/faq/</loc></url>
   <url><loc>https://nbti.dofun.fun/en/insights/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/insights/why-do-i-feel-like-different-versions-of-myself/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/insights/why-do-i-overthink-everything/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/insights/why-do-i-start-things-but-dont-finish/</loc></url>
   <url><loc>https://nbti.dofun.fun/en/privacy/</loc></url>
   <url><loc>https://nbti.dofun.fun/en/rankings/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/result/BCS/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/result/BSO/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/result/BXC/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/result/BXE/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/result/CBC/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/result/CEC/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/result/EAS+/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/result/EAS/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/result/EXS/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/result/MXT/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/result/SACE/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/result/SBC/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/result/SEA/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/result/SOC/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/result/XEB/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/result/XOC/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/result/XOS/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/result/XSB/</loc></url>
   <url><loc>https://nbti.dofun.fun/en/test/</loc></url>
   <url><loc>https://nbti.dofun.fun/en/types/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/types/bcs/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/types/bso/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/types/bxc/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/types/bxe/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/types/cbc/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/types/cec/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/types/eas-plus/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/types/eas/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/types/exs/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/types/mxt/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/types/sace/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/types/sbc/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/types/sea/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/types/soc/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/types/xeb/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/types/xoc/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/types/xos/</loc></url>
+  <url><loc>https://nbti.dofun.fun/en/types/xsb/</loc></url>
   <url><loc>https://nbti.dofun.fun/faq/</loc></url>
   <url><loc>https://nbti.dofun.fun/insights/</loc></url>
   <url><loc>https://nbti.dofun.fun/insights/why-do-i-feel-like-different-versions-of-myself/</loc></url>
@@ -23,8 +62,8 @@
   <url><loc>https://nbti.dofun.fun/result/BXE/</loc></url>
   <url><loc>https://nbti.dofun.fun/result/CBC/</loc></url>
   <url><loc>https://nbti.dofun.fun/result/CEC/</loc></url>
+  <url><loc>https://nbti.dofun.fun/result/EAS+/</loc></url>
   <url><loc>https://nbti.dofun.fun/result/EAS/</loc></url>
-  <url><loc>https://nbti.dofun.fun/result/EAS%2B/</loc></url>
   <url><loc>https://nbti.dofun.fun/result/EXS/</loc></url>
   <url><loc>https://nbti.dofun.fun/result/MXT/</loc></url>
   <url><loc>https://nbti.dofun.fun/result/SACE/</loc></url>

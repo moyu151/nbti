@@ -3,12 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NBTI Types - 18 Personality Patterns</title>
-    <meta name="description" content="Explore 18 NBTI personality patterns: strengths, friction points, relationship style, and work mode." />
+    <title>NBTI Type Library - 18 Personality Patterns</title>
+    <meta name="description" content="Browse all 18 NBTI personality patterns and open each detailed profile." />
     <link rel="canonical" href="https://nbti.dofun.fun/en/types/" />
     <link rel="alternate" hreflang="zh-CN" href="https://nbti.dofun.fun/types/" />
     <link rel="alternate" hreflang="en" href="https://nbti.dofun.fun/en/types/" />
+    <link rel="alternate" hreflang="x-default" href="https://nbti.dofun.fun/" />
     <link rel="stylesheet" href="/assets/css/style.css?v=20260414-11" />
+    <script src="/assets/js/data-en.js?v=20260414-11" defer></script>
     <script src="/assets/js/app.js?v=20260414-11" defer></script>
   </head>
   <body>
@@ -25,25 +27,44 @@
         </nav>
       </header>
       <section class="hero">
-        <h1>Personality Type Library</h1>
-        <p class="lead">18 behavior-driven patterns from the NBTI framework.</p>
+        <h1>Which type feels like you?</h1>
+        <p class="lead">(Maybe more than one)</p>
+        <p class="muted">Tap any type to open details</p>
       </section>
       <section class="section">
-        <div class="grid">
-          <a class="card" href="/types/xos/"><strong>Explorer (XOS)</strong><p class="muted">Idea-rich, novelty-driven, high-start momentum.</p></a>
-          <a class="card" href="/types/exs/"><strong>Overthinker (EXS)</strong><p class="muted">Deep processing loop, high cognitive replay.</p></a>
-          <a class="card" href="/types/sea/"><strong>Emotion Radar (SEA)</strong><p class="muted">Early emotional detection, detail-sensitive.</p></a>
-          <a class="card" href="/types/bxc/"><strong>Solo Mode (BXC)</strong><p class="muted">Independent pace, low-frequency social mode.</p></a>
+        <div id="types-filter-bar" class="filter-row">
+          <button class="chip active" data-filter="all">🔥 Most Relatable</button>
+          <button class="chip" data-filter="think">🧠 Think-heavy</button>
+          <button class="chip" data-filter="multi">🎭 Multi-version</button>
+          <button class="chip" data-filter="social">📢 Social Dynamics</button>
+          <button class="chip" data-filter="steady">🧱 Steady Execution</button>
         </div>
       </section>
       <section class="section">
-        <p class="muted">Full English type pages are in localization rollout. You can browse complete profiles in the global version now.</p>
-        <div class="cta-row"><a class="btn" href="/types/">Open Full Type Pages</a></div>
+        <div id="types-list-app" class="feed-grid"></div>
       </section>
+      <section class="section">
+        <h2>You may also search</h2>
+        <div class="grid">
+          <a class="card" href="/en/insights/why-do-i-overthink-everything/" data-track="types_insights_click" data-track-meta="overthink">
+            <p><strong>Why do I overthink everything?</strong></p>
+            <p class="muted">Related: Overthinker / Emotion Radar</p>
+          </a>
+          <a class="card" href="/en/insights/why-do-i-start-things-but-dont-finish/" data-track="types_insights_click" data-track-meta="start_finish">
+            <p><strong>Why do I start fast but fail to finish?</strong></p>
+            <p class="muted">Related: Explorer / Multi-Version</p>
+          </a>
+          <a class="card" href="/en/insights/why-do-i-feel-like-different-versions-of-myself/" data-track="types_insights_click" data-track-meta="multi_version">
+            <p><strong>Why do I feel like different versions of myself?</strong></p>
+            <p class="muted">Related: Multi-Version / Adaptive Generalist</p>
+          </a>
+        </div>
+      </section>
+      <a class="btn floating-cta" href="/en/test/" data-track="types_cta_click" data-track-meta="floating">👉 Find My Type</a>
       <footer class="footer">
         <p>NBTI V2.0 · Static Edition · <span data-year></span></p>
+        <p><a href="/en/privacy/">Privacy</a> · <a href="/en/faq/">FAQ</a> · <a href="/en/test/">Start Test</a></p>
       </footer>
     </main>
   </body>
 </html>
-
