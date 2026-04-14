@@ -972,7 +972,7 @@
           : ""
       }
       <section class="section">
-        <h2>${t("相关性感", "Related Similarity")}</h2>
+        <h2>${t("相关性格", "Related Similarity")}</h2>
         <div class="grid related-grid">
           ${related
             .map((r) => {
@@ -1160,25 +1160,25 @@
 
       const topCards = top3
         .map((r, i) => {
-          const t = byCode(r.code);
+          const typeObj = byCode(r.code);
           const em = CARD_EMOJI_MAP[r.code] || ["✨", "🧩", "⚡"];
-          const traits = t ? displayTraits(t) : (isEnSite() ? ["Trait 1", "Trait 2", "Trait 3"] : ["特征1", "特征2", "特征3"]);
+          const traits = typeObj ? displayTraits(typeObj) : (isEnSite() ? ["Trait 1", "Trait 2", "Trait 3"] : ["特征1", "特征2", "特征3"]);
           const medal = i === 0 ? "🥇" : i === 1 ? "🥈" : "🥉";
           return `
           <article class="card top-rank-card">
             <p class="top-rank-medal muted">${medal} TOP ${i + 1}</p>
             <h3 class="top-rank-title">#${i + 1} ${r.type_name} ${r.code}</h3>
             ${
-              t
+              typeObj
                 ? `
             <picture class="top-rank-cover-wrap">
-              <source srcset="/assets/types/${t.slug}.webp" type="image/webp" />
-              <img class="top-rank-cover" src="/assets/types/${t.slug}.png" alt="${r.type_name} ${r.code}" loading="lazy" />
+              <source srcset="/assets/types/${typeObj.slug}.webp" type="image/webp" />
+              <img class="top-rank-cover" src="/assets/types/${typeObj.slug}.png" alt="${r.type_name} ${r.code}" loading="lazy" />
             </picture>
             `
                 : ""
             }
-            <p class="top-rank-quote">「${escapeHtml((t && (t.cardHeadline || t.oneLiner)) || "")}」</p>
+            <p class="top-rank-quote">「${escapeHtml((typeObj && (typeObj.cardHeadline || typeObj.oneLiner)) || "")}」</p>
             <div class="top-rank-tags">
               <span class="mini-tag">${em[0]} ${traits[0]}</span>
               <span class="mini-tag">${em[1]} ${traits[1]}</span>
@@ -1193,8 +1193,8 @@
 
       const tableRows = rows
         .map((r) => {
-          const t = byCode(r.code);
-          const slug = t ? t.slug : "";
+          const typeObj = byCode(r.code);
+          const slug = typeObj ? typeObj.slug : "";
           return `
             <tr class="rank-row" data-slug="${slug}">
               <td>#${r.rank}</td>
