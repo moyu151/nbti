@@ -74,6 +74,37 @@
     localStorage.setItem("nbti_last_result_v2", JSON.stringify(payload));
   }
 
+  function trackEvent(eventName, meta) {
+    try {
+      const payload = {
+        event: eventName,
+        meta: meta || {},
+        path: window.location.pathname,
+        ts: new Date().toISOString()
+      };
+      window.NBTI_EVENTS = window.NBTI_EVENTS || [];
+      window.NBTI_EVENTS.push(payload);
+
+      const key = "nbti_event_log_v1";
+      const old = JSON.parse(localStorage.getItem(key) || "[]");
+      old.push(payload);
+      const trimmed = old.slice(-500);
+      localStorage.setItem(key, JSON.stringify(trimmed));
+    } catch (e) {
+      // swallow tracking errors
+    }
+  }
+
+  function setupTrackingDelegation() {
+    document.addEventListener("click", (e) => {
+      const node = e.target.closest("[data-track]");
+      if (!node) return;
+      const name = node.getAttribute("data-track") || "click";
+      const meta = node.getAttribute("data-track-meta") || "";
+      trackEvent(name, { meta });
+    });
+  }
+
   function renderTypeCard(type) {
     return `
       <article class="type-item">
@@ -455,6 +486,7 @@
         a.click();
         a.remove();
         URL.revokeObjectURL(url);
+        trackEvent("card_download", { source: "result_page", template, code: type.code });
         btn.textContent = "已保存";
       } catch (e) {
         btn.textContent = "保存失败";
@@ -473,6 +505,7 @@
     copyBtn.addEventListener("click", async () => {
       try {
         await navigator.clipboard.writeText(shareText);
+        trackEvent("share_copy", { source: "result_page", code: type.code });
         copyBtn.textContent = "已复制";
       } catch (e) {
         alert("复制失败，请手动复制。");
@@ -625,6 +658,7 @@
         a.click();
         a.remove();
         URL.revokeObjectURL(url);
+        trackEvent("card_download", { source: "type_detail", template, code: type.code });
         btn.textContent = "已保存";
       } catch (e) {
         btn.textContent = "保存失败";
@@ -641,6 +675,7 @@
     copyBtn.addEventListener("click", async () => {
       try {
         await navigator.clipboard.writeText(shareText);
+        trackEvent("share_copy", { source: "type_detail", code: type.code });
         copyBtn.textContent = "已复制";
         setTimeout(() => {
           copyBtn.textContent = "👉 发给朋友看看他们是哪种";
@@ -695,7 +730,7 @@
       const ts = Array.isArray(type.cardTraits) ? type.cardTraits.slice(0, 3) : type.traits.slice(0, 3);
       const quote = type.cardHeadline || type.oneLiner;
       return `
-      <a class="feed-card" href="/types/${type.slug}/" aria-label="查看 ${type.name} ${type.code}">
+      <a class="feed-card" href="/types/${type.slug}/" aria-label="查看 ${type.name} ${type.code}" data-track="type_card_click" data-track-meta="${type.code}">
         <div class="tag">${type.code}</div>
         <h3>${type.cardName || type.name}</h3>
         <p class="quote">「${escapeHtml(quote)}」</p>
@@ -783,7 +818,7 @@
 
       root.innerHTML = `
         <section class="section">
-          <p class="muted">只统计用户主动完成测试后的结果</p>
+          <p class="muted">这个榜单，来自所有完成测试的结果</p>
           <div class="stats-grid">
             <article class="card"><p class="muted">总提交数</p><h3>${fmtNum(rd.summary.total_submissions)}</h3></article>
             <article class="card"><p class="muted">已上榜人格</p><h3>${rd.summary.types_on_board} / ${rd.summary.types_total}</h3></article>
@@ -801,11 +836,12 @@
           <div class="rank-head">
             <h2>排行榜主榜</h2>
             <div class="filter-row">
-              <button class="chip ${mode === "all_time" ? "active" : ""}" data-rmode="all_time">全部时间</button>
-              <button class="chip ${mode === "seven_day" ? "active" : ""}" data-rmode="seven_day">最近7天</button>
-              <button class="chip ${mode === "today" ? "active" : ""}" data-rmode="today">今天</button>
+              <button class="chip ${mode === "all_time" ? "active" : ""}" data-rmode="all_time" data-track="rankings_mode_switch" data-track-meta="all_time">全部时间</button>
+              <button class="chip ${mode === "seven_day" ? "active" : ""}" data-rmode="seven_day" data-track="rankings_mode_switch" data-track-meta="seven_day">最近7天</button>
+              <button class="chip ${mode === "today" ? "active" : ""}" data-rmode="today" data-track="rankings_mode_switch" data-track-meta="today">今天</button>
             </div>
           </div>
+          <p class="muted trend-legend"><span class="trend up">↑ 上升</span> · <span class="trend down">↓ 下降</span> · <span class="trend flat">— 持平</span> · <span class="trend new">NEW 新上榜</span></p>
           <div class="card rank-table-wrap">
             <table class="rank-table">
               <thead><tr><th>排名</th><th>人格</th><th>代码</th><th>提交量</th><th>占比</th><th>趋势</th></tr></thead>
@@ -851,7 +887,7 @@
         <section class="section">
           <h2>你在榜上哪一类？</h2>
           <p>测完再看这张榜，会更像在看自己。</p>
-          <div class="cta-row"><a class="btn" href="/test/">👉 我也去测一下</a></div>
+          <div class="cta-row"><a class="btn" href="/test/" data-track="rankings_cta_click" data-track-meta="bottom">👉 我也去测一下</a></div>
         </section>
       `;
 
@@ -865,7 +901,10 @@
       root.querySelectorAll(".rank-row").forEach((row) => {
         row.addEventListener("click", () => {
           const slug = row.getAttribute("data-slug");
-          if (slug) window.location.href = `/types/${slug}/`;
+          if (slug) {
+            trackEvent("rankings_row_click", { slug });
+            window.location.href = `/types/${slug}/`;
+          }
         });
       });
 
@@ -889,6 +928,7 @@
             a.click();
             a.remove();
             URL.revokeObjectURL(url);
+            trackEvent("card_download", { template: "result", source: "rankings_top", code: type.code });
             btn.textContent = "已保存";
           } catch (err) {
             btn.textContent = "保存失败";
@@ -921,6 +961,7 @@
   }
 
   function boot() {
+    setupTrackingDelegation();
     hydrateYear();
     setupTestPage();
     renderResultPage();

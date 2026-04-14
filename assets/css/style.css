@@ -378,6 +378,14 @@ p {
   vertical-align: top;
 }
 
+.rank-row {
+  cursor: pointer;
+}
+
+.rank-row:hover {
+  background: #f7f6f2;
+}
+
 .rank-table th {
   white-space: nowrap;
 }
@@ -392,6 +400,15 @@ p {
 
 .trend.flat {
   color: var(--muted);
+}
+
+.trend.new {
+  color: #7a42f4;
+}
+
+.trend-legend {
+  font-size: 13px;
+  margin: 8px 0 10px;
 }
 
 .dist-row {
