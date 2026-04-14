@@ -1,0 +1,265 @@
+:root {
+  --bg: #f8f8f6;
+  --paper: #ffffff;
+  --ink: #111111;
+  --muted: #666666;
+  --line: #e6e6e1;
+  --accent: #0a0a0a;
+  --tag: #f1f1ec;
+  --max: 980px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(circle at top right, #fbfbf7 0%, var(--bg) 45%, #f2f1ed 100%);
+  color: var(--ink);
+  font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.65;
+}
+
+a {
+  color: inherit;
+}
+
+.site-wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 28px 18px 80px;
+}
+
+.topbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 36px;
+}
+
+.logo {
+  font-size: 20px;
+  letter-spacing: 0.08em;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.logo small {
+  font-size: 12px;
+  color: var(--muted);
+  margin-left: 8px;
+}
+
+.nav {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  text-decoration: none;
+  padding: 4px 8px;
+  border: 1px solid transparent;
+}
+
+.nav a:hover {
+  border-color: var(--line);
+  background: var(--paper);
+}
+
+.hero {
+  margin-top: 20px;
+  margin-bottom: 44px;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.25;
+  margin: 0 0 12px;
+}
+
+h1 {
+  font-size: clamp(34px, 6vw, 56px);
+  letter-spacing: 0.02em;
+}
+
+h2 {
+  font-size: clamp(24px, 3.2vw, 34px);
+}
+
+p {
+  margin: 0 0 12px;
+}
+
+.lead {
+  font-size: clamp(18px, 2.6vw, 24px);
+  color: #252525;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.btn {
+  appearance: none;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: #fff;
+  padding: 12px 18px;
+  cursor: pointer;
+  font-size: 15px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn.secondary {
+  background: transparent;
+  color: var(--ink);
+}
+
+.btn.ghost {
+  border-color: var(--line);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.section {
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+  margin-top: 24px;
+}
+
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 18px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 12px;
+  border: 1px solid var(--line);
+  background: var(--tag);
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+
+.question-box {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 20px;
+}
+
+.answers {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.option {
+  padding: 12px;
+  border: 1px solid var(--line);
+  background: #fff;
+  cursor: pointer;
+  text-align: left;
+}
+
+.option.active {
+  border-color: var(--ink);
+  background: #f2f2ee;
+}
+
+.progress-wrap {
+  height: 8px;
+  background: #ecebe6;
+  margin-bottom: 16px;
+}
+
+.progress {
+  height: 8px;
+  background: #1f1f1f;
+  width: 0%;
+  transition: width 0.2s ease;
+}
+
+.type-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.type-item {
+  border: 1px solid var(--line);
+  background: var(--paper);
+  padding: 16px;
+}
+
+.type-cover {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  margin-bottom: 10px;
+  background: #f3f3ef;
+}
+
+.hero-cover {
+  width: min(360px, 100%);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  display: block;
+  margin-bottom: 14px;
+  background: #f3f3ef;
+}
+
+.footer {
+  margin-top: 44px;
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.rank-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--line);
+}
+
+@media (max-width: 640px) {
+  .site-wrap {
+    padding: 20px 14px 70px;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
