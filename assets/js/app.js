@@ -74,6 +74,35 @@
     localStorage.setItem("nbti_last_result_v2", JSON.stringify(payload));
   }
 
+  function applyUnifiedSiteChrome() {
+    const navHtml = `
+      <a href="/test/">测试</a>
+      <a href="/types/">类型</a>
+      <a href="/rankings/">热度榜</a>
+      <a href="/insights/why-do-i-overthink-everything/">洞察</a>
+      <a href="/faq/">FAQ</a>
+      <a href="/about/">关于</a>
+    `;
+
+    document.querySelectorAll(".topbar").forEach((bar) => {
+      const nav = bar.querySelector(".nav");
+      if (nav) nav.innerHTML = navHtml;
+    });
+
+    const main = document.querySelector(".site-wrap");
+    if (!main) return;
+    let footer = main.querySelector(".footer");
+    if (!footer) {
+      footer = document.createElement("footer");
+      footer.className = "footer";
+      main.appendChild(footer);
+    }
+    footer.innerHTML = `
+      <p>NBTI V2.0 · 纯静态版 · <span data-year></span></p>
+      <p><a href="/privacy/">隐私</a> · <a href="/faq/">FAQ</a> · <a href="/test/">进入测试</a></p>
+    `;
+  }
+
   function trackEvent(eventName, meta) {
     try {
       const payload = {
@@ -530,14 +559,10 @@
         ? type.traits.slice(0, 3)
         : ["特征1", "特征2", "特征3"];
     const shareText = `我是「${type.name} ${type.code}」\n\n${type.oneLiner}\n\n👉 来测测你是哪种人`;
-    const seo = type.seo || {};
-
-    if (seo.title_en) {
-      document.title = seo.title_en;
-    }
-    if (seo.meta_description_en) {
-      const desc = document.querySelector('meta[name="description"]');
-      if (desc) desc.setAttribute("content", seo.meta_description_en);
+    document.title = `${type.cardName || type.name} ${type.code} - NBTI 类型详情`;
+    const desc = document.querySelector('meta[name="description"]');
+    if (desc) {
+      desc.setAttribute("content", `${type.cardName || type.name}（${type.code}）类型详情：你为什么会这样、容易卡在哪、怎么调整更顺。`);
     }
 
     root.innerHTML = `
@@ -556,7 +581,6 @@
       <section class="section">
         <h2>核心人格机制</h2>
         <article class="card">
-          ${seo.intro_en ? `<p class="muted">${escapeHtml(seo.intro_en)}</p>` : ""}
           <p>${withBreaks(type.mechanism)}</p>
         </article>
       </section>
@@ -617,11 +641,9 @@
       <section class="section">
         <h2>FAQ（搜索问题）</h2>
         <article class="card">
-          ${
-            Array.isArray(seo.faq)
-              ? seo.faq.map((qa) => `<p><strong>${escapeHtml(qa.q)}</strong><br />${escapeHtml(qa.a)}</p>`).join("")
-              : `<p><strong>Can this type change?</strong><br />Yes. Context and life stage can shift your behavior profile.</p>`
-          }
+          <p><strong>这个类型会变化吗？</strong><br />会。状态、关系和环境变化时，结果也可能变化。</p>
+          <p><strong>这个类型最容易卡在哪？</strong><br />通常卡在你最常用的行为策略被过度使用的时候。</p>
+          <p><strong>先从哪里开始调整？</strong><br />先改一个最常见卡点：执行节奏、情绪边界或表达方式。</p>
         </article>
       </section>
       <section class="section">
@@ -634,7 +656,7 @@
           <button class="btn" id="typeSaveResultCardBtn">👉 生成我的人格卡</button>
           <button class="btn secondary" id="typeSaveDanmuCardBtn">👉 生成弹幕卡</button>
           <button class="btn ghost" id="typeCopyShareBtn">👉 发给朋友看看他们是哪种</button>
-          <a class="btn ghost" href="/test/">Take the test to find your type</a>
+          <a class="btn ghost" href="/test/">👉 去测试看看我的类型</a>
         </div>
       </section>
     `;
@@ -961,6 +983,7 @@
   }
 
   function boot() {
+    applyUnifiedSiteChrome();
     setupTrackingDelegation();
     hydrateYear();
     setupTestPage();
