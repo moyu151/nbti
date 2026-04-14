@@ -71,6 +71,7 @@ a {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .nav a {
@@ -82,6 +83,27 @@ a {
 .nav a:hover {
   border-color: var(--line);
   background: var(--paper);
+}
+
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 4px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.lang-switch a {
+  padding: 2px 4px;
+  border: 1px solid transparent;
+  text-decoration: none;
+}
+
+.lang-switch a.active {
+  border-color: var(--line);
+  background: #f7f6f2;
+  color: var(--ink);
 }
 
 .hero {

@@ -319,8 +319,8 @@
     ctx.lineTo(w - 90, 182);
     ctx.stroke();
     ctx.beginPath();
-    ctx.moveTo(90, h - 250);
-    ctx.lineTo(w - 90, h - 250);
+    ctx.moveTo(90, h - 280);
+    ctx.lineTo(w - 90, h - 280);
     ctx.stroke();
     ctx.setLineDash([]);
 
@@ -332,32 +332,46 @@
     ctx.fillText(payload.type_name, pad, 218);
 
     ctx.font = "700 48px Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif";
-    const headline = wrapLines(ctx, payload.headline, contentW - 24, 2);
+    const headline = wrapLines(ctx, payload.headline, contentW - 20, 2);
     let y = 336;
-    ctx.fillText("「", pad, y);
-    y += 8;
-    headline.forEach((line) => {
-      ctx.fillText(line, pad + 46, y);
+    headline.forEach((line, idx) => {
+      const isFirst = idx === 0;
+      const isLast = idx === headline.length - 1;
+      const text = `${isFirst ? "「" : ""}${line}${isLast ? "」" : ""}`;
+      ctx.fillText(text, pad, y);
       y += 64;
     });
-    ctx.fillText("」", pad + 10, y + 4);
 
-    ctx.font = "600 38px Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif";
-    let ty = y + 84;
+    ctx.font = "600 34px Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif";
+    let ty = y + 70;
     payload.traits.slice(0, 3).forEach((t, i) => {
       const emo = payload.emoji[i] || "✨";
-      ctx.fillText(`${emo} ${t}`, pad, ty);
-      ty += 72;
+      const tagText = `${emo} ${t}`;
+      const tw = ctx.measureText(tagText).width;
+      ctx.strokeStyle = "#c9c8c3";
+      ctx.lineWidth = 2;
+      ctx.strokeRect(pad, ty - 6, tw + 28, 52);
+      ctx.fillStyle = "#111111";
+      ctx.fillText(tagText, pad + 14, ty + 2);
+      ty += 66;
     });
 
     const danmuSeed = payload.danmu && payload.danmu.length ? payload.danmu : ["这不就是我？？？", "太真实了", "我被看透了", "后悔点进来"];
+    const danmuText = `弹幕：${danmuSeed.join("  ·  ")}`;
     ctx.font = "500 30px Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif";
     ctx.fillStyle = "#333333";
-    ctx.fillText(`弹幕：${danmuSeed.join("  ·  ")}`, pad, ty + 18);
+    const danmuLines = wrapLines(ctx, danmuText, contentW - 8, 2);
+    danmuLines.forEach((line, idx) => {
+      let finalLine = line;
+      if (idx === danmuLines.length - 1 && danmuText.length > danmuLines.join("").length) {
+        finalLine = `${line}…`;
+      }
+      ctx.fillText(finalLine, pad, ty + 24 + idx * 42);
+    });
 
     const qrSize = 210;
     const qrX = w - pad - qrSize;
-    const qrY = h - 220 - qrSize;
+    const qrY = h - 340;
     ctx.strokeStyle = "#111111";
     ctx.lineWidth = 2;
     ctx.strokeRect(qrX, qrY, qrSize, qrSize);
@@ -367,9 +381,9 @@
 
     ctx.font = "600 30px Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif";
     ctx.fillStyle = "#111111";
-    ctx.fillText("https://nbti.dofun.fun/", pad, h - 188);
+    ctx.fillText("https://nbti.dofun.fun/", pad, h - 214);
     ctx.font = "600 34px Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif";
-    ctx.fillText("—— 测测你是哪种人", pad, h - 136);
+    ctx.fillText("—— 测测你是哪种人", pad, h - 162);
   }
 
   function drawTemplatePatch(ctx, payload, w, h) {
@@ -1208,8 +1222,55 @@
     });
   }
 
+  function initGoogleAnalytics() {
+    const GA_ID = "G-S0LDZZ4WET";
+    if (window.__nbtiGaInited) return;
+    window.__nbtiGaInited = true;
+
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+    document.head.appendChild(script);
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () {
+      window.dataLayer.push(arguments);
+    };
+    window.gtag("js", new Date());
+    window.gtag("config", GA_ID);
+  }
+
+  function injectLangSwitch() {
+    const nav = document.querySelector(".topbar .nav");
+    if (!nav || nav.querySelector(".lang-switch")) return;
+    const path = window.location.pathname;
+    const isEn = path === "/en" || path.startsWith("/en/");
+    let zhPath = "/";
+    let enPath = "/en/";
+
+    if (isEn) {
+      const raw = path.replace(/^\/en/, "") || "/";
+      zhPath = raw.endsWith("/") ? raw : `${raw}/`;
+      enPath = path.endsWith("/") ? path : `${path}/`;
+    } else {
+      zhPath = path.endsWith("/") ? path : `${path}/`;
+      enPath = `/en${zhPath}`;
+    }
+
+    const wrapper = document.createElement("span");
+    wrapper.className = "lang-switch";
+    wrapper.innerHTML = `
+      <a href="${zhPath}" class="${isEn ? "" : "active"}">中</a>
+      <span>/</span>
+      <a href="${enPath}" class="${isEn ? "active" : ""}">EN</a>
+    `;
+    nav.appendChild(wrapper);
+  }
+
   function boot() {
+    initGoogleAnalytics();
     setupTrackingDelegation();
+    injectLangSwitch();
     hydrateYear();
     try {
       renderHomePage();
