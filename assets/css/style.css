@@ -25,6 +25,7 @@ body {
 
 a {
   color: inherit;
+  text-decoration: none;
 }
 
 .site-wrap {
@@ -45,16 +46,25 @@ a {
 }
 
 .logo {
-  font-size: 20px;
+  font-size: clamp(38px, 5vw, 52px);
   letter-spacing: 0.08em;
   font-weight: 800;
   text-decoration: none;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  line-height: 1;
 }
 
 .logo small {
   font-size: 12px;
   color: var(--muted);
-  margin-left: 8px;
+  margin-left: 0;
+  letter-spacing: 0.06em;
+  line-height: 1.25;
+  font-weight: 600;
+  text-transform: none;
 }
 
 .nav {
@@ -127,6 +137,13 @@ p {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, background-color 0.16s ease, color 0.16s ease, border-color 0.16s ease;
+}
+
+.btn:hover:not(:disabled),
+.btn:focus-visible:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
 }
 
 .btn.secondary {
@@ -138,6 +155,17 @@ p {
   border-color: var(--line);
   background: var(--paper);
   color: var(--ink);
+}
+
+.btn.secondary:hover:not(:disabled),
+.btn.secondary:focus-visible:not(:disabled) {
+  background: #f2f2ee;
+}
+
+.btn.ghost:hover:not(:disabled),
+.btn.ghost:focus-visible:not(:disabled) {
+  border-color: #cfcfc8;
+  background: #f7f7f3;
 }
 
 .section {
@@ -333,6 +361,12 @@ p {
   color: #d7d7d7;
 }
 
+.expect-main .lead {
+  color: #ffffff;
+  font-weight: 700;
+  margin: 0;
+}
+
 .danmu-wall {
   overflow: hidden;
   border: 1px solid var(--line);
@@ -447,6 +481,36 @@ p {
   color: #333;
 }
 
+.type-hero-split {
+  display: grid;
+  grid-template-columns: minmax(260px, 320px) 1fr;
+  gap: 12px;
+}
+
+.type-hero-split .card {
+  margin: 0;
+}
+
+.type-hero-image .hero-cover {
+  width: 100%;
+  margin: 0;
+}
+
+.type-hero-copy h1 {
+  margin-bottom: 10px;
+}
+
+.related-grid .related-card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.related-card h3 {
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -553,6 +617,13 @@ p {
   font-size: 13px;
 }
 
+.footer a,
+.footer a:visited,
+.footer a:hover,
+.footer a:active {
+  text-decoration: none !important;
+}
+
 .rank-item {
   display: flex;
   justify-content: space-between;
@@ -566,12 +637,24 @@ p {
     padding: 20px 14px 70px;
   }
 
+  .logo {
+    font-size: 34px;
+  }
+
+  .logo small {
+    font-size: 11px;
+  }
+
   .btn {
     width: 100%;
     justify-content: center;
   }
 
   .feed-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .type-hero-split {
     grid-template-columns: 1fr;
   }
 

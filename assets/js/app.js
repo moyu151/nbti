@@ -415,7 +415,26 @@
     const questions = window.NBTI_DATA.questions;
     const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
     let index = 0;
+    let isNavigating = false;
     const answers = { ...saved };
+
+    function goToNextQuestionOrResult(currentQuestion) {
+      if (isNavigating) return;
+      if (!answers[currentQuestion.id]) {
+        alert("先选一个最像你的答案。");
+        return;
+      }
+      isNavigating = true;
+      if (index < questions.length - 1) {
+        index += 1;
+        render();
+        isNavigating = false;
+        return;
+      }
+      const result = computeResult(answers);
+      saveResult(result);
+      window.location.href = codePath(result.primaryCode);
+    }
 
     function answeredCount() {
       return Object.keys(answers).length;
@@ -456,9 +475,14 @@
         btn.className = `option ${answered === opt.key ? "active" : ""}`;
         btn.textContent = `${opt.key}. ${opt.text}`;
         btn.addEventListener("click", () => {
+          const currentIndex = index;
           answers[q.id] = opt.key;
           localStorage.setItem(STORAGE_KEY, JSON.stringify(answers));
           render();
+          window.setTimeout(() => {
+            if (index !== currentIndex) return;
+            goToNextQuestionOrResult(q);
+          }, 120);
         });
         answersBox.appendChild(btn);
       });
@@ -473,18 +497,7 @@
 
       const nextBtn = document.getElementById("nextBtn");
       nextBtn.addEventListener("click", () => {
-        if (!answers[q.id]) {
-          alert("先选一个最像你的答案。");
-          return;
-        }
-        if (index < questions.length - 1) {
-          index += 1;
-          render();
-          return;
-        }
-        const result = computeResult(answers);
-        saveResult(result);
-        window.location.href = codePath(result.primaryCode);
+        goToNextQuestionOrResult(q);
       });
     }
 
@@ -640,6 +653,18 @@
         ? type.traits.slice(0, 3)
         : ["特征1", "特征2", "特征3"];
     const shareText = `我是「${type.name} ${type.code}」\n\n${type.oneLiner}\n\n👉 来测测你是哪种人`;
+    const related = [...window.NBTI_DATA.types]
+      .filter((t) => t.code !== type.code)
+      .map((t) => {
+        let distance = 0;
+        window.NBTI_DATA.dimensions.forEach((d) => {
+          distance += Math.abs((type.vector[d] || 0) - (t.vector[d] || 0));
+        });
+        return { type: t, distance };
+      })
+      .sort((a, b) => a.distance - b.distance)
+      .slice(0, 3)
+      .map((x) => x.type);
     document.title = `${type.cardName || type.name} ${type.code} - NBTI 类型详情`;
     const desc = document.querySelector('meta[name="description"]');
     if (desc) {
@@ -647,11 +672,19 @@
     }
 
     root.innerHTML = `
-      <section class="card type-report-card">
-        <p class="muted">NBTI REPORT #${type.code}</p>
-        <h1>${type.cardName || type.name}</h1>
-        <p class="lead">${escapeHtml(type.cardHeadline || type.oneLiner)}</p>
-        <p class="traits-inline">${em[0]} ${escapeHtml(traits[0])} · ${em[1]} ${escapeHtml(traits[1])} · ${em[2]} ${escapeHtml(traits[2])}</p>
+      <section class="type-hero-split">
+        <article class="card type-hero-image">
+          <picture>
+            <source srcset="/assets/types/${type.slug}.webp" type="image/webp" />
+            <img class="hero-cover" src="/assets/types/${type.slug}.png" alt="${type.name} ${type.code} 插图" />
+          </picture>
+        </article>
+        <article class="card type-hero-copy">
+          <p class="muted">NBTI REPORT #${type.code}</p>
+          <h1>${type.cardName || type.name} ${type.code}</h1>
+          <p class="lead">${escapeHtml(type.cardHeadline || type.oneLiner)}</p>
+          <p class="traits-inline">${em[0]} ${escapeHtml(traits[0])} · ${em[1]} ${escapeHtml(traits[1])} · ${em[2]} ${escapeHtml(traits[2])}</p>
+        </article>
       </section>
       <section class="section">
         <h2>一句话破防</h2>
@@ -709,6 +742,12 @@
           <p>${withBreaks(type.growth)}</p>
         </article>
       </section>
+      <section class="section">
+        <h2>NBTI翻译成人话</h2>
+        <article class="card">
+          <p class="lead">${escapeHtml(type.humanTranslation || type.oneLiner)}</p>
+        </article>
+      </section>
       ${
         type.danmu && type.danmu.length
           ? `
@@ -720,12 +759,26 @@
           : ""
       }
       <section class="section">
-        <h2>FAQ（搜索问题）</h2>
-        <article class="card">
-          <p><strong>这个类型会变化吗？</strong><br />会。状态、关系和环境变化时，结果也可能变化。</p>
-          <p><strong>这个类型最容易卡在哪？</strong><br />通常卡在你最常用的行为策略被过度使用的时候。</p>
-          <p><strong>先从哪里开始调整？</strong><br />先改一个最常见卡点：执行节奏、情绪边界或表达方式。</p>
-        </article>
+        <h2>相关性感</h2>
+        <div class="grid related-grid">
+          ${related
+            .map((r) => {
+              const re = CARD_EMOJI_MAP[r.code] || ["✨", "🧩", "⚡"];
+              const rt = Array.isArray(r.cardTraits) ? r.cardTraits.slice(0, 3) : (r.traits || []).slice(0, 3);
+              return `
+                <a class="card related-card" href="/types/${r.slug}/" data-track="type_related_click" data-track-meta="${type.code}->${r.code}">
+                  <picture>
+                    <source srcset="/assets/types/${r.slug}.webp" type="image/webp" />
+                    <img class="type-cover" src="/assets/types/${r.slug}.png" alt="${r.name} ${r.code} 插图" loading="lazy" />
+                  </picture>
+                  <h3>${r.cardName || r.name}</h3>
+                  <p>${escapeHtml(r.cardHeadline || r.oneLiner)}</p>
+                  <p class="muted">${re[0]} ${escapeHtml(rt[0] || "")} · ${re[1]} ${escapeHtml(rt[1] || "")} · ${re[2]} ${escapeHtml(rt[2] || "")}</p>
+                </a>
+              `;
+            })
+            .join("")}
+        </div>
       </section>
       <section class="section">
         <h2>分享引导</h2>
