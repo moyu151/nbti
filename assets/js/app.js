@@ -10,8 +10,21 @@
     return window.NBTI_DATA.types.find((t) => t.slug === slug);
   }
 
+  function isEnSite() {
+    const p = window.location.pathname || "/";
+    return p === "/en" || p.startsWith("/en/");
+  }
+
+  function t(zh, en) {
+    return isEnSite() ? en : zh;
+  }
+
+  function route(path) {
+    return `${isEnSite() ? "/en" : ""}${path}`;
+  }
+
   function codePath(code) {
-    return `/result/${encodeURIComponent(code)}/`;
+    return route(`/result/${encodeURIComponent(code)}/`);
   }
 
   function scoreAnswer(answerKey, reverse) {
@@ -496,7 +509,7 @@
     function goToNextQuestionOrResult(currentQuestion) {
       if (isNavigating) return;
       if (!answers[currentQuestion.id]) {
-        alert("先选一个最像你的答案。");
+        alert(t("先选一个最像你的答案。", "Please select the option that fits you best."));
         return;
       }
       isNavigating = true;
@@ -523,25 +536,25 @@
 
       holder.innerHTML = `
         <div class="progress-wrap"><div class="progress" style="width:${percent}%"></div></div>
-        <p class="muted">第 ${index + 1} / ${questions.length} 题 · 已完成 ${done} 题</p>
+        <p class="muted">${t(`第 ${index + 1} / ${questions.length} 题 · 已完成 ${done} 题`, `Question ${index + 1} / ${questions.length} · Answered ${done}`)}</p>
         <section class="question-box">
-          <div class="tag">${q.dim} 维度</div>
+          <div class="tag">${q.dim} ${t("维度", "Dimension")}</div>
           <h2>${q.text}</h2>
           <div class="answers" id="answers"></div>
         </section>
         <div class="cta-row">
-          <button class="btn secondary" id="prevBtn" ${index === 0 ? "disabled" : ""}>上一题</button>
-          <button class="btn ghost" id="nextBtn">${index === questions.length - 1 ? "查看结果" : "下一题"}</button>
+          <button class="btn secondary" id="prevBtn" ${index === 0 ? "disabled" : ""}>${t("上一题", "Previous")}</button>
+          <button class="btn ghost" id="nextBtn">${index === questions.length - 1 ? t("查看结果", "View Result") : t("下一题", "Next")}</button>
         </div>
       `;
 
       const answersBox = document.getElementById("answers");
       const options = q.options
         ? [
-            { key: "A", text: q.options.A || "完全是我" },
-            { key: "B", text: q.options.B || "有点像" },
-            { key: "C", text: q.options.C || "不太像" },
-            { key: "D", text: q.options.D || "完全不是" }
+            { key: "A", text: q.options.A || t("完全是我", "Exactly me") },
+            { key: "B", text: q.options.B || t("有点像", "Somewhat me") },
+            { key: "C", text: q.options.C || t("不太像", "Not really me") },
+            { key: "D", text: q.options.D || t("完全不是", "Not me at all") }
           ]
         : window.NBTI_DATA.answerOptions;
 
@@ -588,22 +601,24 @@
     const secondary = payload && payload.secondaryCode ? byCode(payload.secondaryCode) : null;
 
     if (!type) {
-      root.innerHTML = "<p>结果不存在，请重新测试。</p>";
+      root.innerHTML = `<p>${t("结果不存在，请重新测试。", "Result not found. Please take the test again.")}</p>`;
       return;
     }
 
-    const shareText = `我是「${type.name} ${type.code}」\n\n${type.oneLiner}\n\n👉 来测测你是哪种人：https://nbti.dofun.fun/`;
+    const shareText = isEnSite()
+      ? `I got "${type.name} ${type.code}"\n\n${type.oneLiner}\n\n👉 Take the test: https://nbti.dofun.fun/en/`
+      : `我是「${type.name} ${type.code}」\n\n${type.oneLiner}\n\n👉 来测测你是哪种人：https://nbti.dofun.fun/`;
 
     root.innerHTML = `
       <section class="card result-card-hero">
         <picture>
           <source srcset="/assets/types/${type.slug}.webp" type="image/webp" />
-          <img class="hero-cover" src="/assets/types/${type.slug}.png" alt="${type.name} ${type.code} 插图" />
+          <img class="hero-cover" src="/assets/types/${type.slug}.png" alt="${type.name} ${type.code} ${t("插图","illustration")}" />
         </picture>
-        <div class="tag">NBTI 结果</div>
+        <div class="tag">${t("NBTI 结果", "NBTI Result")}</div>
         <h1>${type.name} ${type.code}</h1>
         <p class="lead">${type.oneLiner}</p>
-        ${secondary ? `<p class="muted">次人格倾向：${secondary.name} ${secondary.code}</p>` : ""}
+        ${secondary ? `<p class="muted">${t("次人格倾向：", "Secondary tendency:")} ${secondary.name} ${secondary.code}</p>` : ""}
         ${
           type.danmu && type.danmu.length
             ? `
@@ -617,17 +632,17 @@
             : ""
         }
         <div class="cta-row">
-          <button class="btn" id="saveResultCardBtn">保存结果卡</button>
+          <button class="btn" id="saveResultCardBtn">${t("保存结果卡", "Save Result Card")}</button>
         </div>
       </section>
       <section class="section">
-        <h2>一句话破防总结</h2>
+        <h2>${t("一句话破防总结", "One-line Core Hit")}</h2>
         <article class="card breakline-card">
           <p class="lead">${escapeHtml(type.breakLine || type.oneLiner)}</p>
         </article>
       </section>
       <section class="section">
-        <h2>你的真实状态</h2>
+        <h2>${t("你的真实状态", "Your Real Pattern")}</h2>
         <article class="card">
           <ul class="bullet-list">
             ${(type.realState || []).map((x) => `<li>${escapeHtml(x)}</li>`).join("")}
@@ -635,31 +650,31 @@
         </article>
       </section>
       <section class="section">
-        <h2>完整人格解析</h2>
-        <p><strong>核心人格机制：</strong>${withBreaks(type.mechanism)}</p>
-        <p><strong>别人眼里的你：</strong>${withBreaks(type.outsideView)}</p>
-        <p><strong>你的强项：</strong>${withBreaks(type.strengths)}</p>
-        <p><strong>你的隐性 Bug：</strong>${withBreaks(type.hiddenBug)}</p>
-        <p><strong>关系模式：</strong>${withBreaks(type.relationMode)}</p>
-        <p><strong>职场 / 创作模式：</strong>${withBreaks(type.workMode)}</p>
-        <p><strong>压力状态：</strong>${withBreaks(type.stressMode)}</p>
-        <p><strong>成长建议：</strong>${withBreaks(type.growth)}</p>
-        <p><strong>NBTI 翻译成人话：</strong>${withBreaks(type.humanTranslation)}</p>
+        <h2>${t("完整人格解析", "Full Profile")}</h2>
+        <p><strong>${t("核心人格机制：", "Core mechanism:")}</strong>${withBreaks(type.mechanism)}</p>
+        <p><strong>${t("别人眼里的你：", "How others see you:")}</strong>${withBreaks(type.outsideView)}</p>
+        <p><strong>${t("你的强项：", "Your strengths:")}</strong>${withBreaks(type.strengths)}</p>
+        <p><strong>${t("你的隐性 Bug：", "Your hidden bug:")}</strong>${withBreaks(type.hiddenBug)}</p>
+        <p><strong>${t("关系模式：", "Relationship pattern:")}</strong>${withBreaks(type.relationMode)}</p>
+        <p><strong>${t("职场 / 创作模式：", "Work / creative mode:")}</strong>${withBreaks(type.workMode)}</p>
+        <p><strong>${t("压力状态：", "Stress mode:")}</strong>${withBreaks(type.stressMode)}</p>
+        <p><strong>${t("成长建议：", "Growth advice:")}</strong>${withBreaks(type.growth)}</p>
+        <p><strong>${t("NBTI 翻译成人话：", "In plain words:")}</strong>${withBreaks(type.humanTranslation)}</p>
       </section>
       <section class="section">
-        <h2>评论区引导</h2>
+        <h2>${t("评论区引导", "Prompt to Reflect")}</h2>
         <article class="card">
-          <p>${escapeHtml(type.commentPrompt || "你是这个类型吗？评论区报类型👇")}</p>
-          <p class="muted">也可以留言：你这次是 A 选项多，还是 B 选项多？</p>
+          <p>${escapeHtml(type.commentPrompt || t("你是这个类型吗？评论区报类型👇", "Does this type feel like you?"))}</p>
+          <p class="muted">${t("也可以留言：你这次是 A 选项多，还是 B 选项多？", "You can also share whether you picked more A or B answers.")}</p>
         </article>
       </section>
       <section class="section">
-        <h2>分享我的结果</h2>
+        <h2>${t("分享我的结果", "Share My Result")}</h2>
         <pre class="card" id="share-text">${shareText}</pre>
         <div class="cta-row">
-          <button class="btn" id="copyShare">复制分享文案</button>
-          <a class="btn secondary" href="/test/">再测一次</a>
-          <a class="btn ghost" href="/types/${type.slug}/">查看类型页</a>
+          <button class="btn" id="copyShare">${t("复制分享文案", "Copy Share Text")}</button>
+          <a class="btn secondary" href="${route("/test/")}">${t("再测一次", "Retake Test")}</a>
+          <a class="btn ghost" href="${route(`/types/${type.slug}/`)}">${t("查看类型页", "View Type Page")}</a>
         </div>
       </section>
     `;
@@ -670,7 +685,7 @@
     async function saveCard(btn, template, suffix) {
       btn.disabled = true;
       const oldText = btn.textContent;
-      btn.textContent = "生成中...";
+      btn.textContent = t("生成中...", "Generating...");
       try {
         const blob = await drawShareCard(type, template);
         if (!blob) throw new Error("blob");
@@ -683,9 +698,9 @@
         a.remove();
         URL.revokeObjectURL(url);
         trackEvent("card_download", { source: "result_page", template, code: type.code });
-        btn.textContent = "已保存";
+        btn.textContent = t("已保存", "Saved");
       } catch (e) {
-        btn.textContent = "保存失败";
+        btn.textContent = t("保存失败", "Save failed");
       } finally {
         setTimeout(() => {
           btn.disabled = false;
@@ -700,9 +715,9 @@
       try {
         await navigator.clipboard.writeText(shareText);
         trackEvent("share_copy", { source: "result_page", code: type.code });
-        copyBtn.textContent = "已复制";
+        copyBtn.textContent = t("已复制", "Copied");
       } catch (e) {
-        alert("复制失败，请手动复制。");
+        alert(t("复制失败，请手动复制。", "Copy failed. Please copy manually."));
       }
     });
   }
