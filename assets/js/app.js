@@ -436,7 +436,7 @@
 
     ctx.fillStyle = "#111111";
     ctx.font = "700 40px Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif";
-    ctx.fillText(`${isEnSite() ? "NBTI Result Ticket" : "NBTI 结果票据"} #${payload.code}`, pad, 104);
+    ctx.fillText(`${isEnSite() ? "NBTI Personality Type" : "NBTI 人格类型"} #${payload.code}`, pad, 104);
 
     ctx.font = "800 86px Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif";
     ctx.fillText(payload.type_name, pad, 218);
@@ -467,7 +467,7 @@
     });
 
     const danmuSeed = payload.danmu && payload.danmu.length ? payload.danmu : isEnSite() ? ["This is me???", "Too real", "I feel seen", "Regret clicking"] : ["这不就是我？？？", "太真实了", "我被看透了", "后悔点进来"];
-    const danmuText = `${isEnSite() ? "Comments" : "弹幕"}：${danmuSeed.join("  ·  ")}`;
+    const danmuText = `${danmuSeed.join("  ·  ")}`;
     ctx.font = "500 30px Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif";
     ctx.fillStyle = "#333333";
     const danmuLines = wrapLines(ctx, danmuText, contentW - 8, 2);
@@ -479,15 +479,12 @@
       ctx.fillText(finalLine, pad, ty + 24 + idx * 42);
     });
 
-    const qrSize = 210;
+    const qrSize = 176;
     const qrX = w - pad - qrSize;
-    const qrY = h - 340;
-    ctx.strokeStyle = "#111111";
-    ctx.lineWidth = 2;
-    ctx.strokeRect(qrX, qrY, qrSize, qrSize);
+    const qrY = h - 236;
     ctx.font = "500 24px Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif";
     ctx.fillStyle = "#555555";
-    ctx.fillText(isEnSite() ? "Scan to visit" : "扫码访问", qrX + 54, qrY + qrSize + 12);
+    ctx.fillText(isEnSite() ? "Scan to visit" : "扫码访问", qrX + 34, qrY + qrSize + 10);
 
     ctx.font = "600 30px Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif";
     ctx.fillStyle = "#111111";
@@ -552,9 +549,9 @@
     const ctx = canvas.getContext("2d");
     const payload = cardPayload(type);
     async function drawQrToCard() {
-      const qrSize = 210;
+      const qrSize = 176;
       const qrX = width - 96 - qrSize;
-      const qrY = height - 220 - qrSize;
+      const qrY = height - 236;
       const loadImg = (src) =>
         new Promise((resolve, reject) => {
           const im = new Image();
