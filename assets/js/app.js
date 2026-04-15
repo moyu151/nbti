@@ -1368,6 +1368,30 @@
     });
   }
 
+  function initSiteIcons() {
+    const head = document.head;
+    if (!head) return;
+    const links = [
+      { rel: "icon", href: "/assets/icons/icon/favicon.ico", sizes: "any" },
+      { rel: "icon", href: "/assets/icons/icon/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { rel: "icon", href: "/assets/icons/icon/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { rel: "apple-touch-icon", href: "/assets/icons/icon/apple-touch-icon.png", sizes: "180x180" },
+      { rel: "icon", href: "/assets/icons/icon/icon-192.png", sizes: "192x192", type: "image/png" },
+      { rel: "icon", href: "/assets/icons/icon/icon-512.png", sizes: "512x512", type: "image/png" }
+    ];
+    links.forEach((cfg) => {
+      let el = head.querySelector(`link[rel="${cfg.rel}"][href="${cfg.href}"]`);
+      if (!el) {
+        el = document.createElement("link");
+        el.rel = cfg.rel;
+        el.href = cfg.href;
+        head.appendChild(el);
+      }
+      if (cfg.sizes) el.setAttribute("sizes", cfg.sizes);
+      if (cfg.type) el.setAttribute("type", cfg.type);
+    });
+  }
+
   function getRuntimeConfig() {
     const defaults = {
       analytics: {
@@ -1442,6 +1466,7 @@
   }
 
   function boot() {
+    initSiteIcons();
     initGoogleAnalytics();
     initAds();
     setupTrackingDelegation();
