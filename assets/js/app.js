@@ -1371,14 +1371,34 @@
     });
   }
 
+  function getRuntimeConfig() {
+    const defaults = {
+      analytics: {
+        enabled: true,
+        gaId: "G-S0LDZZ4WET"
+      },
+      ads: {
+        enabled: false,
+        provider: "",
+        slotIds: []
+      }
+    };
+    const runtime = window.NBTI_RUNTIME_CONFIG || {};
+    return {
+      analytics: Object.assign({}, defaults.analytics, runtime.analytics || {}),
+      ads: Object.assign({}, defaults.ads, runtime.ads || {})
+    };
+  }
+
   function initGoogleAnalytics() {
-    const GA_ID = "G-S0LDZZ4WET";
+    const cfg = getRuntimeConfig().analytics;
+    if (!cfg.enabled || !cfg.gaId) return;
     if (window.__nbtiGaInited) return;
     window.__nbtiGaInited = true;
 
     const script = document.createElement("script");
     script.async = true;
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${cfg.gaId}`;
     document.head.appendChild(script);
 
     window.dataLayer = window.dataLayer || [];
@@ -1386,7 +1406,15 @@
       window.dataLayer.push(arguments);
     };
     window.gtag("js", new Date());
-    window.gtag("config", GA_ID);
+    window.gtag("config", cfg.gaId);
+  }
+
+  function initAds() {
+    const cfg = getRuntimeConfig().ads;
+    if (!cfg.enabled || !cfg.provider) return;
+    if (window.__nbtiAdsInited) return;
+    window.__nbtiAdsInited = true;
+    // Reserved for future ad provider bootstrap.
   }
 
   function injectLangSwitch() {
@@ -1418,6 +1446,7 @@
 
   function boot() {
     initGoogleAnalytics();
+    initAds();
     setupTrackingDelegation();
     injectLangSwitch();
     hydrateYear();
